@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="文件处理命令ls(list)执行权限:所有用户 ls 显示当前目录文件  -a(–all)：显示所有文件  -l(long)(显示当前文件下文件的属性)  -h(humanize):将文件大小以k、mb这样的形式表现出来  -i：显示文件的i结点   mkdir(make directories)：创建目录权限：所有用户  -p：递归创建  cd(change directory)权限：所有用户">
+<meta name="description" content="用户配置文件用户信息文件&#x2F;etc&#x2F;passwd用户管理简介 越是对服务器安全较高的服务器名，越要求对用户等级制度和服务器操作规范  在Linux中，主要是查看用户配置文件来查看、修改用户信息   &#x2F;etc&#x2F;passwd 第一字段：用户名  第二字段：密码标志  第三字段：UID  0: 超级用户  1-499：系统用户(伪用户,删除直崩溃)  500-65535：普通用户    第四字段：GID(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux入门――文件处理命令">
-<meta property="og:url" content="http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:title" content="Linux入门——用户和用户组管理">
+<meta property="og:url" content="http://yoursite.com/2020/04/18/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="叶某人">
-<meta property="og:description" content="文件处理命令ls(list)执行权限:所有用户 ls 显示当前目录文件  -a(–all)：显示所有文件  -l(long)(显示当前文件下文件的属性)  -h(humanize):将文件大小以k、mb这样的形式表现出来  -i：显示文件的i结点   mkdir(make directories)：创建目录权限：所有用户  -p：递归创建  cd(change directory)权限：所有用户">
-<meta property="article:published_time" content="2020-04-16T11:06:46.000Z">
-<meta property="article:modified_time" content="2020-04-17T01:40:49.996Z">
+<meta property="og:description" content="用户配置文件用户信息文件&#x2F;etc&#x2F;passwd用户管理简介 越是对服务器安全较高的服务器名，越要求对用户等级制度和服务器操作规范  在Linux中，主要是查看用户配置文件来查看、修改用户信息   &#x2F;etc&#x2F;passwd 第一字段：用户名  第二字段：密码标志  第三字段：UID  0: 超级用户  1-499：系统用户(伪用户,删除直崩溃)  500-65535：普通用户    第四字段：GID(">
+<meta property="article:published_time" content="2020-04-18T01:49:33.000Z">
+<meta property="article:modified_time" content="2020-04-18T03:54:50.238Z">
 <meta property="article:author" content="叶某人">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/16/Linux入门――命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/18/Linux入门——用户和用户组管理/"/>
 
 
 
 
 
-  <title>Linux入门――文件处理命令 | 叶某人</title>
+  <title>Linux入门——用户和用户组管理 | 叶某人</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="叶某人">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux入门――文件处理命令</h1>
+          <h1 class="post-title" itemprop="name headline">Linux入门——用户和用户组管理</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T19:06:46+08:00">
-                2020-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-18T09:49:33+08:00">
+                2020-04-18
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/18/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/16/Linux入门――命令/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/18/Linux入门——用户和用户组管理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,90 +362,138 @@
       
 
       
-        <h2 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h2><h3 id="ls-list"><a href="#ls-list" class="headerlink" title="ls(list)"></a>ls(list)</h3><p>执行权限:所有用户</p>
-<p>ls 显示当前目录文件</p>
+        <h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><h4 id="用户管理简介"><a href="#用户管理简介" class="headerlink" title="用户管理简介"></a>用户管理简介</h4><ol>
+<li><p>越是对服务器安全较高的服务器名，越要求对用户等级制度和服务器操作规范</p>
+</li>
+<li><p>在Linux中，主要是查看用户配置文件来查看、修改用户信息</p>
+</li>
+</ol>
+<h4 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h4><ul>
+<li><p>第一字段：用户名</p>
+</li>
+<li><p>第二字段：密码标志</p>
+</li>
+<li><p>第三字段：UID</p>
 <ul>
-<li><p>-a(–all)：显示所有文件</p>
+<li><p>0: 超级用户</p>
 </li>
-<li><p>-l(long)(显示当前文件下文件的属性)</p>
+<li><p>1-499：系统用户(伪用户,删除直崩溃)</p>
 </li>
-<li><p>-h(humanize):将文件大小以k、mb这样的形式表现出来</p>
-</li>
-<li><p>-i：显示文件的i结点</p>
+<li><p>500-65535：普通用户</p>
 </li>
 </ul>
-<h3 id="mkdir-make-directories-：创建目录"><a href="#mkdir-make-directories-：创建目录" class="headerlink" title="mkdir(make directories)：创建目录"></a>mkdir(make directories)：创建目录</h3><p>权限：所有用户</p>
+</li>
+<li><p>第四字段：GID(用户初始组ID)</p>
 <ul>
-<li>-p：递归创建</li>
+<li><p>初始组：用户默认的组，每个用户只有一个</p>
+</li>
+<li><p>附加组：用户可以加入其他多个用户的用户组，并拥有这些组的权限，附加组可以有多个</p>
+</li>
 </ul>
-<h3 id="cd-change-directory"><a href="#cd-change-directory" class="headerlink" title="cd(change directory)"></a>cd(change directory)</h3><p>权限：所有用户</p>
-<h3 id="pwd-print-working-directory-：显示当前目录路径"><a href="#pwd-print-working-directory-：显示当前目录路径" class="headerlink" title="pwd(print working directory)：显示当前目录路径"></a>pwd(print working directory)：显示当前目录路径</h3><p>权限：所有用户</p>
-<h3 id="rmdir-remove-empty-direcories-：删除空白目录"><a href="#rmdir-remove-empty-direcories-：删除空白目录" class="headerlink" title="rmdir(remove empty direcories)：删除空白目录"></a>rmdir(remove empty direcories)：删除空白目录</h3><p>权限: 所有用户</p>
-<h3 id="cp-copy-：复制"><a href="#cp-copy-：复制" class="headerlink" title="cp(copy)：复制"></a>cp(copy)：复制</h3><p>cp [源文件目录] [目标文件目录]</p>
+</li>
+<li><p>第五字段：用户说明</p>
+</li>
+<li><p>第六字段：家目录</p>
 <ul>
-<li><p>rp</p>
+<li><p>普通用户：/home/用户名/</p>
 </li>
-<li><p>r：拷贝目录</p>
-</li>
-<li><p>p：保留文件属性</p>
+<li><p>超级用户：/root/</p>
 </li>
 </ul>
-<p>在复制的同时也可以改名</p>
-<h3 id="mv-move-：剪切、移动-也可以改名"><a href="#mv-move-：剪切、移动-也可以改名" class="headerlink" title="mv(move)：剪切、移动,也可以改名"></a>mv(move)：剪切、移动,也可以改名</h3><p>与cp 大同小异，不需要-r</p>
-<h3 id="rm-remove-：删除"><a href="#rm-remove-：删除" class="headerlink" title="rm(remove)：删除"></a>rm(remove)：删除</h3><ul>
-<li><p>-rf</p>
 </li>
-<li><p>-r：删除目录</p>
+<li><p>第七字段：登录之后的Shell</p>
+<ul>
+<li><p>Shell：相当于Linux的命令解释器</p>
 </li>
-<li><p>-f：强行执行</p>
+<li><p>在/etc/passwd中，默认是/bin/bash/中，还有/sbin/nologin/</p>
 </li>
 </ul>
-<h3 id="touch：创建空文件"><a href="#touch：创建空文件" class="headerlink" title="touch：创建空文件"></a>touch：创建空文件</h3><h3 id="cat-查看文件内容"><a href="#cat-查看文件内容" class="headerlink" title="cat: 查看文件内容"></a>cat: 查看文件内容</h3><ul>
-<li>-n：显示行号</li>
-</ul>
-<h3 id="tac：反向显示"><a href="#tac：反向显示" class="headerlink" title="tac：反向显示"></a>tac：反向显示</h3><h3 id="more：分页显示文件内容"><a href="#more：分页显示文件内容" class="headerlink" title="more：分页显示文件内容"></a>more：分页显示文件内容</h3><ul>
-<li><p>冒号：浏览</p>
-</li>
-<li><p>f、空格：翻页浏览</p>
-</li>
-<li><p>回车：一行一行浏览</p>
-</li>
-<li><p>q：退出</p>
 </li>
 </ul>
-<h3 id="less：可以向上翻页"><a href="#less：可以向上翻页" class="headerlink" title="less：可以向上翻页"></a>less：可以向上翻页</h3><ul>
-<li><p>和more一样</p>
+<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><ul>
+<li><p>第一字段：用户名</p>
 </li>
-<li><p>pageup：向上翻页</p>
+<li><p>第二字段：加密密码</p>
+<ul>
+<li><p>SHA512算法</p>
 </li>
-<li><p>上箭头：向上换行</p>
-</li>
-<li><p>/：搜索:按n往后找</p>
-</li>
-</ul>
-<h3 id="head：查看文件前几行"><a href="#head：查看文件前几行" class="headerlink" title="head：查看文件前几行"></a>head：查看文件前几行</h3><ul>
-<li>-n：显示前n行，默认前几行</li>
-</ul>
-<h3 id="tail：后几行"><a href="#tail：后几行" class="headerlink" title="tail：后几行"></a>tail：后几行</h3><ul>
-<li><p>与head一样</p>
-</li>
-<li><p>-f：动态显示，如果有变动就会显示</p>
+<li><p>如果密码位是!!或*代表没有密码，不能登录</p>
 </li>
 </ul>
-<h3 id="ln：链接"><a href="#ln：链接" class="headerlink" title="ln：链接"></a>ln：链接</h3><ul>
-<li>-s创建软链接</li>
+</li>
+<li><p>第三字段：密码最后的修改时期</p>
+<ul>
+<li>时间戳：1970.1.1为标准时间，每过一天时间戳加一</li>
 </ul>
-<p>ln -s file1 file2：生成file1的软链接file2</p>
-<p>软链接类似于Windows的快捷方式</p>
-<p>ln file1 file2：生成file1的硬链接file2</p>
-<p>硬链接可以同步更新，源文件即使丢失，硬链接也能生效</p>
-<p>如何区别硬链接和源文件</p>
-<p>注意：</p>
+</li>
+<li><p>第四字段：两次修改的间隔</p>
+</li>
+<li><p>第五字段：密码到期时间</p>
+</li>
+<li><p>第六字段：密码到期前警告时间</p>
+</li>
+<li><p>第七字段：密码到期后的宽限时间</p>
+</li>
+<li><p>第八字段：账号失效时间(时间戳表示)</p>
+</li>
+<li><p>第九字段：保留</p>
+</li>
+</ul>
+<h4 id="时间戳换算"><a href="#时间戳换算" class="headerlink" title="时间戳换算"></a>时间戳换算</h4><ul>
+<li><p>date -d “1970-01-01 n days”</p>
+</li>
+<li><p>echo $(($(date –date=”2014/01/06”+%s)/86400+1))</p>
+</li>
+</ul>
+<h3 id="组信息文件-etc-group"><a href="#组信息文件-etc-group" class="headerlink" title="组信息文件/etc/group"></a>组信息文件/etc/group</h3><ul>
+<li><p>第一字段：组名</p>
+</li>
+<li><p>第二字段：组密码标志</p>
+</li>
+<li><p>第三字段：GID(组(group)ID)</p>
+</li>
+<li><p>第四字段：组中附加用户</p>
+</li>
+</ul>
+<h2 id="用户管理相关文件"><a href="#用户管理相关文件" class="headerlink" title="用户管理相关文件"></a>用户管理相关文件</h2><h3 id="家目录"><a href="#家目录" class="headerlink" title="家目录"></a>家目录</h3><ol>
+<li><p>普通用户：/home/用户名，所有者和所属组700</p>
+</li>
+<li><p>超级用户：/root/，所有者和所属组都是root，权限550</p>
+</li>
+</ol>
+<h3 id="用户的邮箱"><a href="#用户的邮箱" class="headerlink" title="用户的邮箱"></a>用户的邮箱</h3><ol>
+<li>/var/spool/mail/用户名</li>
+</ol>
+<h3 id="用户模板目录"><a href="#用户模板目录" class="headerlink" title="用户模板目录"></a>用户模板目录</h3><ol>
+<li>/etc/skel/</li>
+</ol>
+<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><h3 id="useradd命令"><a href="#useradd命令" class="headerlink" title="useradd命令"></a>useradd命令</h3><p>选项：</p>
+<ul>
+<li><p>-u 手工指定UID</p>
+</li>
+<li><p>-d 指定家目录</p>
+</li>
+<li><p>-c 用户说明</p>
+</li>
+<li><p>-g 手工指定初始组</p>
+</li>
+<li><p>-G 指定用户的附加组</p>
+</li>
+<li><p>-s(shell) 手工指定登录shell 默认/bin/bash</p>
+</li>
+</ul>
+<p>用户默认值文件：</p>
+<ul>
+<li><p>/etc/default/useradd/</p>
+</li>
+<li><p>/etc/login.defs</p>
+</li>
+</ul>
+<h3 id="passwd命令"><a href="#passwd命令" class="headerlink" title="passwd命令"></a>passwd命令</h3><p>选项：</p>
 <ol>
-<li><p>硬链接不能跨分区</p>
+<li><p>-S 查询密码状态</p>
 </li>
-<li><p>硬链接不能针对目录使用</p>
-</li>
+<li></li>
 </ol>
 
       
@@ -477,8 +525,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%88%9D%E5%AD%A6%E8%80%85%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%87%A0%E7%82%B9/" rel="next" title="Linux入门――初学者需要注意的几点">
-                <i class="fa fa-chevron-left"></i> Linux入门――初学者需要注意的几点
+              <a href="/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%8C%85/" rel="next" title="Linux入门――软件管理包">
+                <i class="fa fa-chevron-left"></i> Linux入门――软件管理包
               </a>
             
           </div>
@@ -486,10 +534,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/16/RB-tree%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2/" rel="prev" title="RB_tree深度探索">
-                RB_tree深度探索 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -631,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">1.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-list"><span class="nav-number">1.1.</span> <span class="nav-text">ls(list)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-make-directories-：创建目录"><span class="nav-number">1.2.</span> <span class="nav-text">mkdir(make directories)：创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-change-directory"><span class="nav-number">1.3.</span> <span class="nav-text">cd(change directory)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd-print-working-directory-：显示当前目录路径"><span class="nav-number">1.4.</span> <span class="nav-text">pwd(print working directory)：显示当前目录路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rmdir-remove-empty-direcories-：删除空白目录"><span class="nav-number">1.5.</span> <span class="nav-text">rmdir(remove empty direcories)：删除空白目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp-copy-：复制"><span class="nav-number">1.6.</span> <span class="nav-text">cp(copy)：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv-move-：剪切、移动-也可以改名"><span class="nav-number">1.7.</span> <span class="nav-text">mv(move)：剪切、移动,也可以改名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-remove-：删除"><span class="nav-number">1.8.</span> <span class="nav-text">rm(remove)：删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch：创建空文件"><span class="nav-number">1.9.</span> <span class="nav-text">touch：创建空文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat-查看文件内容"><span class="nav-number">1.10.</span> <span class="nav-text">cat: 查看文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tac：反向显示"><span class="nav-number">1.11.</span> <span class="nav-text">tac：反向显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more：分页显示文件内容"><span class="nav-number">1.12.</span> <span class="nav-text">more：分页显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less：可以向上翻页"><span class="nav-number">1.13.</span> <span class="nav-text">less：可以向上翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head：查看文件前几行"><span class="nav-number">1.14.</span> <span class="nav-text">head：查看文件前几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail：后几行"><span class="nav-number">1.15.</span> <span class="nav-text">tail：后几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln：链接"><span class="nav-number">1.16.</span> <span class="nav-text">ln：链接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户配置文件"><span class="nav-number">1.</span> <span class="nav-text">用户配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户信息文件-etc-passwd"><span class="nav-number">1.1.</span> <span class="nav-text">用户信息文件&#x2F;etc&#x2F;passwd</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户管理简介"><span class="nav-number">1.1.1.</span> <span class="nav-text">用户管理简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-passwd"><span class="nav-number">1.1.2.</span> <span class="nav-text">&#x2F;etc&#x2F;passwd</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影子文件-etc-shadow"><span class="nav-number">1.2.</span> <span class="nav-text">影子文件&#x2F;etc&#x2F;shadow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间戳换算"><span class="nav-number">1.2.1.</span> <span class="nav-text">时间戳换算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组信息文件-etc-group"><span class="nav-number">1.3.</span> <span class="nav-text">组信息文件&#x2F;etc&#x2F;group</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理相关文件"><span class="nav-number">2.</span> <span class="nav-text">用户管理相关文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#家目录"><span class="nav-number">2.1.</span> <span class="nav-text">家目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户的邮箱"><span class="nav-number">2.2.</span> <span class="nav-text">用户的邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户模板目录"><span class="nav-number">2.3.</span> <span class="nav-text">用户模板目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理命令"><span class="nav-number">3.</span> <span class="nav-text">用户管理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useradd命令"><span class="nav-number">3.1.</span> <span class="nav-text">useradd命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passwd命令"><span class="nav-number">3.2.</span> <span class="nav-text">passwd命令</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -801,9 +845,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/';
-          this.page.identifier = '2020/04/16/Linux入门――命令/';
-          this.page.title = 'Linux入门――文件处理命令';
+          this.page.url = 'http://yoursite.com/2020/04/18/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/';
+          this.page.identifier = '2020/04/18/Linux入门——用户和用户组管理/';
+          this.page.title = 'Linux入门——用户和用户组管理';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
