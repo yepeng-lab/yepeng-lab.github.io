@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介软件包分类源码包(绝大多数是C语言，部分C++)- 脚本安装包  - 优点      - 开源，可以修改源代码      - 可以自由选择功能      - 软件是编译安装，所以更适合自己的系统，更加稳定也效率更高      - 卸载更加方便(直接删目录)  - 缺点      - 安装步骤较多，尤其是安装较大的软件集合时，容易出现拼写错误      - 编译时间过长，安装比二进制安装时间长">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux入门――软件管理包">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%8C%85/index.html">
+<meta property="og:site_name" content="叶某人">
+<meta property="og:description" content="简介软件包分类源码包(绝大多数是C语言，部分C++)- 脚本安装包  - 优点      - 开源，可以修改源代码      - 可以自由选择功能      - 软件是编译安装，所以更适合自己的系统，更加稳定也效率更高      - 卸载更加方便(直接删目录)  - 缺点      - 安装步骤较多，尤其是安装较大的软件集合时，容易出现拼写错误      - 编译时间过长，安装比二进制安装时间长">
+<meta property="article:published_time" content="2020-04-17T08:51:35.000Z">
+<meta property="article:modified_time" content="2020-04-17T15:19:37.230Z">
+<meta property="article:author" content="叶某人">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/17/Linux入门――软件管理包/"/>
+
+
+
+
+
+  <title>Linux入门――软件管理包 | 叶某人</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39ec0905036c00bc3b25f4ef357b6556";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶某人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶某人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux入门――软件管理包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T16:51:35+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%8C%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/17/Linux入门――软件管理包/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="软件包分类"><a href="#软件包分类" class="headerlink" title="软件包分类"></a>软件包分类</h3><h4 id="源码包-绝大多数是C语言，部分C"><a href="#源码包-绝大多数是C语言，部分C" class="headerlink" title="源码包(绝大多数是C语言，部分C++)"></a>源码包(绝大多数是C语言，部分C++)</h4><pre><code>- 脚本安装包
+
+- 优点
+
+    - 开源，可以修改源代码
+
+    - 可以自由选择功能
+
+    - 软件是编译安装，所以更适合自己的系统，更加稳定也效率更高
+
+    - 卸载更加方便(直接删目录)
+
+- 缺点
+
+    - 安装步骤较多，尤其是安装较大的软件集合时，容易出现拼写错误
+
+    - 编译时间过长，安装比二进制安装时间长
+
+    - 因为是编译安装，安装过程中一旦报错新手很难解决</code></pre><h4 id="二进制包-经过编译之后"><a href="#二进制包-经过编译之后" class="headerlink" title="二进制包(经过编译之后)"></a>二进制包(经过编译之后)</h4><pre><code>- RPM包(CentOS)
+
+- 系统默认包
+
+- 优点
+
+    - 包管理系统简单，只需要几个简单的命令就可以实现安装、升级、查询、搜索
+
+    - 安装时间长
+
+- 缺点
+
+    - 不能看见源代码
+
+    - 功能选择不如源码包灵活
+
+    - 依赖性</code></pre><h2 id="RPM包管理——RPM命令管理"><a href="#RPM包管理——RPM命令管理" class="headerlink" title="RPM包管理——RPM命令管理"></a>RPM包管理——RPM命令管理</h2><h3 id="包命名与依赖性"><a href="#包命名与依赖性" class="headerlink" title="包命名与依赖性"></a>包命名与依赖性</h3><h4 id="命名规则：如httpd-2-2-15-15-e16-centos-1-i686-rpm"><a href="#命名规则：如httpd-2-2-15-15-e16-centos-1-i686-rpm" class="headerlink" title="命名规则：如httpd-2.2.15-15.e16.centos.1.i686.rpm()"></a>命名规则：如httpd-2.2.15-15.e16.centos.1.i686.rpm()</h4><table>
+<thead>
+<tr>
+<th>名</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>httpd</td>
+<td>软件包名</td>
+</tr>
+<tr>
+<td>2.2.15</td>
+<td>软件版本</td>
+</tr>
+<tr>
+<td>15</td>
+<td>软件发布的次数</td>
+</tr>
+<tr>
+<td>e16.centos</td>
+<td>适合的Linux平台</td>
+</tr>
+<tr>
+<td>i686</td>
+<td>适合的硬件平台</td>
+</tr>
+<tr>
+<td>rpm</td>
+<td>rpm包扩展名</td>
+</tr>
+</tbody></table>
+<h4 id="依赖性"><a href="#依赖性" class="headerlink" title="依赖性"></a>依赖性</h4><ul>
+<li><p>树形依赖：a-&gt;b-&gt;c</p>
+</li>
+<li><p>环形依赖：a-&gt;b-&gt;c-&gt;a</p>
+</li>
+<li><p>模块依赖</p>
+</li>
+</ul>
+<h3 id="rpm命令管理——安装升级与卸载"><a href="#rpm命令管理——安装升级与卸载" class="headerlink" title="rpm命令管理——安装升级与卸载"></a>rpm命令管理——安装升级与卸载</h3><h4 id="包命名与包名"><a href="#包命名与包名" class="headerlink" title="包命名与包名"></a>包命名与包名</h4><ol>
+<li><p>包全名：操作没有安装的软件包</p>
+</li>
+<li><p>包名：操作已经安装的软件包，实际上是搜索/var/lib/rpm/下的数据库，比如查询、卸载</p>
+</li>
+</ol>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li>rpm -ivh 包全名</li>
+</ul>
+<p>选项：</p>
+<pre><code>- -i(install) 安装
+
+- -v(verbose) 显示详细信息
+
+- -h(hash) 显示进度
+
+- --nodeps    不检测依赖性</code></pre><h4 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h4><ul>
+<li>rpm -Uvh 包全名 </li>
+</ul>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p>rpm -e 包名</p>
+<p>选项：<br>    - -e(erase) 卸载<br>    - –nodeps 不检查依赖性</p>
+<h3 id="rpm命令管理——查询"><a href="#rpm命令管理——查询" class="headerlink" title="rpm命令管理——查询"></a>rpm命令管理——查询</h3><h4 id="查询软件包是否安装"><a href="#查询软件包是否安装" class="headerlink" title="查询软件包是否安装"></a>查询软件包是否安装</h4><ul>
+<li><p>rpm -q 包名</p>
+</li>
+<li><p>rpm -qa 包名</p>
+</li>
+</ul>
+<h4 id="查询软件包详细信息"><a href="#查询软件包详细信息" class="headerlink" title="查询软件包详细信息"></a>查询软件包详细信息</h4><p>rpm -qi 包名</p>
+<p>选项：</p>
+<pre><code>- -i 查询软件信息(information)
+
+- -p 查询未安装包信息(package)</code></pre><p>rpm -ql 包名</p>
+<pre><code>- -l 列表(list)
+
+- -p 查询未安装包信息(package)</code></pre><h4 id="查询系统文件属于哪个RPM包"><a href="#查询系统文件属于哪个RPM包" class="headerlink" title="查询系统文件属于哪个RPM包"></a>查询系统文件属于哪个RPM包</h4><p>rpm -qf 系统文件名</p>
+<p>选项：</p>
+<pre><code>- -f(查询系统文件属于哪个文件名)</code></pre><h4 id="查询软件包的依赖性"><a href="#查询软件包的依赖性" class="headerlink" title="查询软件包的依赖性"></a>查询软件包的依赖性</h4><p>rpm -qR 包名</p>
+<p>选项：</p>
+<pre><code>- -R 查询软件的依赖性(requires)
+
+- -p 查询未安装包信息(packages)</code></pre><h3 id="rpm校验包校验"><a href="#rpm校验包校验" class="headerlink" title="rpm校验包校验"></a>rpm校验包校验</h3><h4 id="RPM包校验"><a href="#RPM包校验" class="headerlink" title="RPM包校验"></a>RPM包校验</h4><p>rpm -V 已安装的包名</p>
+<p>选项：</p>
+<pre><code>- -V 校验指定RPM包中的文件(verify)</code></pre><p>注意：信息默认8个字符，具体信息如下</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>文件大小</td>
+</tr>
+<tr>
+<td>M</td>
+<td>文件的类型和文件的权限是否改变</td>
+</tr>
+<tr>
+<td>5</td>
+<td>文件MD5校验码是否改变</td>
+</tr>
+<tr>
+<td>T</td>
+<td>文件的修改时间是否改变</td>
+</tr>
+</tbody></table>
+<p>文件类型</p>
+<p>|c|配置文件|<br>|d|普通文档|<br>|g|鬼文件(ghost file)，意思是该文件不应该被|</p>
+<h4 id="RPM包中提取文件"><a href="#RPM包中提取文件" class="headerlink" title="RPM包中提取文件"></a>RPM包中提取文件</h4><p>rpm2cpio #rpm包转换为cpio的命令</p>
+<p>cpio #一个标准工具，它用于创建软件文档文件和从文档文件中提取文件</p>
+<p>一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rpm -qf &#x2F;bin&#x2F;ls #查询命令属于哪个包</span><br><span class="line">mv &#x2F;bin&#x2F;ls &#x2F;tmp #造成误删除假象</span><br><span class="line">rpm2cpio &#x2F;mnt&#x2F;cdrom&#x2F;Packages&#x2F;coreutils-8.4-19.e16.i686.rpm | cpio -idv .&#x2F;bin&#x2F;ls </span><br><span class="line">#提取RPM包中的ls命令到当前目录的&#x2F;bin&#x2F;ls下</span><br><span class="line">cp &#x2F;root&#x2F;bin&#x2F;ls &#x2F;bin</span><br><span class="line">#把ls命令复制到&#x2F;bin&#x2F;目录，修复文件丢失</span><br></pre></td></tr></table></figure>
+
+<h2 id="yum在线管理"><a href="#yum在线管理" class="headerlink" title="yum在线管理"></a>yum在线管理</h2><p>为了解决rpm依赖性，便出现了yum在线管理，只要你需要什么软件包，yum就会自动下载这个软件包和它依赖的软件包，但是有可能让你给钱</p>
+<h3 id="IP地址配置和网络yum源"><a href="#IP地址配置和网络yum源" class="headerlink" title="IP地址配置和网络yum源"></a>IP地址配置和网络yum源</h3><h4 id="配置ip"><a href="#配置ip" class="headerlink" title="配置ip"></a>配置ip</h4><p>使用setup工具，然后配置文件，执行命令:<code>vim /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<p>将<code>ONBOOT=&quot;no&quot;</code>改为<code>ONBOOT=&quot;yes&quot;</code> #启动网卡</p>
+<p>执行<code>service network restart</code></p>
+<h4 id="网络yum源：保存在-etc-yum-repos-d-默认是CentOS-Base-repo"><a href="#网络yum源：保存在-etc-yum-repos-d-默认是CentOS-Base-repo" class="headerlink" title="网络yum源：保存在/etc/yum.repos.d/ ,默认是CentOS-Base.repo"></a>网络yum源：保存在/etc/yum.repos.d/ ,默认是CentOS-Base.repo</h4><ul>
+<li><p>[base] 容器名称，一定要放在[]里面</p>
+</li>
+<li><p>name 容器说明，可以自己随便写</p>
+</li>
+<li><p>mirrorlist 镜像站点，这个可以注释掉</p>
+</li>
+<li><p>baseurl yum源服务器的地址。默认是CentOS官方的源服务器，是可以使用的</p>
+</li>
+<li><p>enable 默认是0</p>
+</li>
+<li><p>gpgcheck 如果是1是指RPM的数字证书生效，0则是不生效</p>
+</li>
+<li><p>gpgkey 数字证书的公钥保存位置。不用修改</p>
+</li>
+</ul>
+<h3 id="yum命令"><a href="#yum命令" class="headerlink" title="yum命令"></a>yum命令</h3><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><ol>
+<li><p>yum list：查询所有可用的软件包列表</p>
+</li>
+<li><p>yum search 关键字(包名)：搜索服务器上所有和关键字相关的包</p>
+</li>
+</ol>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><ol>
+<li>yum -y install 包名</li>
+</ol>
+<p>选项<br>    - install：安装<br>    - -y：自动回答yes</p>
+<ol start="2">
+<li>yum -y update 包名</li>
+</ol>
+<p>选项：</p>
+<pre><code>- update：升级
+
+- -y 自动回答yes</code></pre><h4 id="卸载-1"><a href="#卸载-1" class="headerlink" title="卸载"></a>卸载</h4><ol>
+<li>yum -y remove 包名</li>
+</ol>
+<h3 id="YUM软件包组管理命令"><a href="#YUM软件包组管理命令" class="headerlink" title="YUM软件包组管理命令"></a>YUM软件包组管理命令</h3><ol>
+<li><p>yum grouplist：查询所有软件组列表</p>
+</li>
+<li><p>yum groupinstall 软件组名：安装指定软件组，组名可以用上一条命令查询出来</p>
+</li>
+<li><p>yum groupremove 软件组名：卸载指定软件组</p>
+</li>
+</ol>
+<h3 id="yum光盘源搭建"><a href="#yum光盘源搭建" class="headerlink" title="yum光盘源搭建"></a>yum光盘源搭建</h3><ol>
+<li><p>挂载光盘</p>
+<p>  mount 硬件设备 挂载点</p>
+</li>
+<li><p>让网络yum源文件失效</p>
+<p> 改变后缀名</p>
+</li>
+<li><p>修改yum源文件</p>
+<p> [c6-media]<br> name=CentOS-$releasever - Media<br> baseurl=file:///mnt/cdrom #光盘挂载地址</p>
+<h1 id="file-media-cdrom"><a href="#file-media-cdrom" class="headerlink" title="file:///media/cdrom/"></a>file:///media/cdrom/</h1><h1 id="file-media-cdrecorder"><a href="#file-media-cdrecorder" class="headerlink" title="file:///media/cdrecorder/"></a>file:///media/cdrecorder/</h1><p> #注释这两个不存在的地址</p>
+</li>
+</ol>
+<h2 id="源码包管理"><a href="#源码包管理" class="headerlink" title="源码包管理"></a>源码包管理</h2><h3 id="源码包与RPM包的区别"><a href="#源码包与RPM包的区别" class="headerlink" title="源码包与RPM包的区别"></a>源码包与RPM包的区别</h3><h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ol>
+<li><p>安装之前的区别：概念上的区别</p>
+</li>
+<li><p>安装之后的区别：安装位置的区别</p>
+</li>
+</ol>
+<h4 id="RPM包安装位置"><a href="#RPM包安装位置" class="headerlink" title="RPM包安装位置"></a>RPM包安装位置</h4><ol>
+<li>在默认位置中</li>
+</ol>
+<p>|RPM包默认安装路径|<br>|——|———|<br>|/ect/|配置文件安装目录|<br>|/usr/bin/|可执行的命令安装目录|<br>|/usr/lib/|程序所使用的函数库保存位置|<br>|/usr/share/doc/|基本软件使用手册保存位置|<br>|/usr/share/man/|帮助文件保存位置|</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95vim/" rel="next" title="Linux入门――vim">
+                <i class="fa fa-chevron-left"></i> Linux入门――vim
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶某人</p>
+              <p class="site-description motion-element" itemprop="description">海到无边天作岸，山登绝顶我为峰</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7Carchive">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包分类"><span class="nav-number">1.1.</span> <span class="nav-text">软件包分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码包-绝大多数是C语言，部分C"><span class="nav-number">1.1.1.</span> <span class="nav-text">源码包(绝大多数是C语言，部分C++)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制包-经过编译之后"><span class="nav-number">1.1.2.</span> <span class="nav-text">二进制包(经过编译之后)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPM包管理——RPM命令管理"><span class="nav-number">2.</span> <span class="nav-text">RPM包管理——RPM命令管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#包命名与依赖性"><span class="nav-number">2.1.</span> <span class="nav-text">包命名与依赖性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命名规则：如httpd-2-2-15-15-e16-centos-1-i686-rpm"><span class="nav-number">2.1.1.</span> <span class="nav-text">命名规则：如httpd-2.2.15-15.e16.centos.1.i686.rpm()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖性"><span class="nav-number">2.1.2.</span> <span class="nav-text">依赖性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rpm命令管理——安装升级与卸载"><span class="nav-number">2.2.</span> <span class="nav-text">rpm命令管理——安装升级与卸载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#包命名与包名"><span class="nav-number">2.2.1.</span> <span class="nav-text">包命名与包名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#升级"><span class="nav-number">2.2.3.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载"><span class="nav-number">2.2.4.</span> <span class="nav-text">卸载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rpm命令管理——查询"><span class="nav-number">2.3.</span> <span class="nav-text">rpm命令管理——查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询软件包是否安装"><span class="nav-number">2.3.1.</span> <span class="nav-text">查询软件包是否安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询软件包详细信息"><span class="nav-number">2.3.2.</span> <span class="nav-text">查询软件包详细信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询系统文件属于哪个RPM包"><span class="nav-number">2.3.3.</span> <span class="nav-text">查询系统文件属于哪个RPM包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询软件包的依赖性"><span class="nav-number">2.3.4.</span> <span class="nav-text">查询软件包的依赖性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rpm校验包校验"><span class="nav-number">2.4.</span> <span class="nav-text">rpm校验包校验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RPM包校验"><span class="nav-number">2.4.1.</span> <span class="nav-text">RPM包校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RPM包中提取文件"><span class="nav-number">2.4.2.</span> <span class="nav-text">RPM包中提取文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum在线管理"><span class="nav-number">3.</span> <span class="nav-text">yum在线管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址配置和网络yum源"><span class="nav-number">3.1.</span> <span class="nav-text">IP地址配置和网络yum源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置ip"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络yum源：保存在-etc-yum-repos-d-默认是CentOS-Base-repo"><span class="nav-number">3.1.2.</span> <span class="nav-text">网络yum源：保存在&#x2F;etc&#x2F;yum.repos.d&#x2F; ,默认是CentOS-Base.repo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum命令"><span class="nav-number">3.2.</span> <span class="nav-text">yum命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询"><span class="nav-number">3.2.1.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">卸载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YUM软件包组管理命令"><span class="nav-number">3.3.</span> <span class="nav-text">YUM软件包组管理命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yum光盘源搭建"><span class="nav-number">3.4.</span> <span class="nav-text">yum光盘源搭建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#file-media-cdrom"><span class="nav-number"></span> <span class="nav-text">file:&#x2F;&#x2F;&#x2F;media&#x2F;cdrom&#x2F;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#file-media-cdrecorder"><span class="nav-number"></span> <span class="nav-text">file:&#x2F;&#x2F;&#x2F;media&#x2F;cdrecorder&#x2F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#源码包管理"><span class="nav-number">1.</span> <span class="nav-text">源码包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码包与RPM包的区别"><span class="nav-number">1.1.</span> <span class="nav-text">源码包与RPM包的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">1.1.1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RPM包安装位置"><span class="nav-number">1.1.2.</span> <span class="nav-text">RPM包安装位置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶某人</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E5%8C%85/';
+          this.page.identifier = '2020/04/17/Linux入门――软件管理包/';
+          this.page.title = 'Linux入门――软件管理包';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WYtTOpdKYeF648bzDlEDhtDR-gzGzoHsz',
+        appKey: 'sOdVcgdJvtgw4WfKIeC4YIPY',
+        placeholder: '',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

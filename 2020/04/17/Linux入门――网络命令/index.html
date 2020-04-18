@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="文件处理命令ls(list)执行权限:所有用户 ls 显示当前目录文件  -a(–all)：显示所有文件  -l(long)(显示当前文件下文件的属性)  -h(humanize):将文件大小以k、mb这样的形式表现出来  -i：显示文件的i结点   mkdir(make directories)：创建目录权限：所有用户  -p：递归创建  cd(change directory)权限：所有用户">
+<meta name="description" content="write 给用户发消息，以Ctrl+D保存结束  write&lt;用户名&gt;   wall write all  ping ping ip  -c+n ，pingn次   ifconfig&#x2F;ip addrmail mail [发信用户名]  last 查看所有用户登录信息  lastlog lastlog –u uid 显示指定用户最后登录时间  traceroute 探测到指定网站的路径">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux入门――文件处理命令">
-<meta property="og:url" content="http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:title" content="Linux入门――网络命令">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="叶某人">
-<meta property="og:description" content="文件处理命令ls(list)执行权限:所有用户 ls 显示当前目录文件  -a(–all)：显示所有文件  -l(long)(显示当前文件下文件的属性)  -h(humanize):将文件大小以k、mb这样的形式表现出来  -i：显示文件的i结点   mkdir(make directories)：创建目录权限：所有用户  -p：递归创建  cd(change directory)权限：所有用户">
-<meta property="article:published_time" content="2020-04-16T11:06:46.000Z">
-<meta property="article:modified_time" content="2020-04-17T01:40:49.996Z">
+<meta property="og:description" content="write 给用户发消息，以Ctrl+D保存结束  write&lt;用户名&gt;   wall write all  ping ping ip  -c+n ，pingn次   ifconfig&#x2F;ip addrmail mail [发信用户名]  last 查看所有用户登录信息  lastlog lastlog –u uid 显示指定用户最后登录时间  traceroute 探测到指定网站的路径">
+<meta property="article:published_time" content="2020-04-17T05:57:38.000Z">
+<meta property="article:modified_time" content="2020-04-17T07:13:05.273Z">
 <meta property="article:author" content="叶某人">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/16/Linux入门――命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/17/Linux入门――网络命令/"/>
 
 
 
 
 
-  <title>Linux入门――文件处理命令 | 叶某人</title>
+  <title>Linux入门――网络命令 | 叶某人</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="叶某人">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux入门――文件处理命令</h1>
+          <h1 class="post-title" itemprop="name headline">Linux入门――网络命令</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T19:06:46+08:00">
-                2020-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T13:57:38+08:00">
+                2020-04-17
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/16/Linux入门――命令/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/17/Linux入门――网络命令/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,91 +362,58 @@
       
 
       
-        <h2 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h2><h3 id="ls-list"><a href="#ls-list" class="headerlink" title="ls(list)"></a>ls(list)</h3><p>执行权限:所有用户</p>
-<p>ls 显示当前目录文件</p>
-<ul>
-<li><p>-a(–all)：显示所有文件</p>
+        <h2 id="write"><a href="#write" class="headerlink" title="write"></a>write</h2><ul>
+<li><p>给用户发消息，以Ctrl+D保存结束</p>
 </li>
-<li><p>-l(long)(显示当前文件下文件的属性)</p>
-</li>
-<li><p>-h(humanize):将文件大小以k、mb这样的形式表现出来</p>
-</li>
-<li><p>-i：显示文件的i结点</p>
+<li><p>write&lt;用户名&gt;</p>
 </li>
 </ul>
-<h3 id="mkdir-make-directories-：创建目录"><a href="#mkdir-make-directories-：创建目录" class="headerlink" title="mkdir(make directories)：创建目录"></a>mkdir(make directories)：创建目录</h3><p>权限：所有用户</p>
-<ul>
-<li>-p：递归创建</li>
+<h2 id="wall"><a href="#wall" class="headerlink" title="wall"></a>wall</h2><ul>
+<li>write all</li>
 </ul>
-<h3 id="cd-change-directory"><a href="#cd-change-directory" class="headerlink" title="cd(change directory)"></a>cd(change directory)</h3><p>权限：所有用户</p>
-<h3 id="pwd-print-working-directory-：显示当前目录路径"><a href="#pwd-print-working-directory-：显示当前目录路径" class="headerlink" title="pwd(print working directory)：显示当前目录路径"></a>pwd(print working directory)：显示当前目录路径</h3><p>权限：所有用户</p>
-<h3 id="rmdir-remove-empty-direcories-：删除空白目录"><a href="#rmdir-remove-empty-direcories-：删除空白目录" class="headerlink" title="rmdir(remove empty direcories)：删除空白目录"></a>rmdir(remove empty direcories)：删除空白目录</h3><p>权限: 所有用户</p>
-<h3 id="cp-copy-：复制"><a href="#cp-copy-：复制" class="headerlink" title="cp(copy)：复制"></a>cp(copy)：复制</h3><p>cp [源文件目录] [目标文件目录]</p>
-<ul>
-<li><p>rp</p>
+<h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h2><ul>
+<li><p>ping ip</p>
 </li>
-<li><p>r：拷贝目录</p>
-</li>
-<li><p>p：保留文件属性</p>
+<li><p>-c+n ，ping<em>n</em>次</p>
 </li>
 </ul>
-<p>在复制的同时也可以改名</p>
-<h3 id="mv-move-：剪切、移动-也可以改名"><a href="#mv-move-：剪切、移动-也可以改名" class="headerlink" title="mv(move)：剪切、移动,也可以改名"></a>mv(move)：剪切、移动,也可以改名</h3><p>与cp 大同小异，不需要-r</p>
-<h3 id="rm-remove-：删除"><a href="#rm-remove-：删除" class="headerlink" title="rm(remove)：删除"></a>rm(remove)：删除</h3><ul>
-<li><p>-rf</p>
+<h2 id="ifconfig-ip-addr"><a href="#ifconfig-ip-addr" class="headerlink" title="ifconfig/ip addr"></a>ifconfig/ip addr</h2><h2 id="mail"><a href="#mail" class="headerlink" title="mail"></a>mail</h2><ul>
+<li>mail [发信用户名]</li>
+</ul>
+<h2 id="last"><a href="#last" class="headerlink" title="last"></a>last</h2><ul>
+<li>查看所有用户登录信息</li>
+</ul>
+<h2 id="lastlog"><a href="#lastlog" class="headerlink" title="lastlog"></a>lastlog</h2><ul>
+<li>lastlog –u uid 显示指定用户最后登录时间</li>
+</ul>
+<h2 id="traceroute-探测到指定网站的路径"><a href="#traceroute-探测到指定网站的路径" class="headerlink" title="traceroute 探测到指定网站的路径"></a>traceroute 探测到指定网站的路径</h2><p>我在这步的时候显示未知的命令，只要执行以下命令就行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install traceroute</span><br></pre></td></tr></table></figure>
+
+<h2 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h2><ul>
+<li><p>显示网络相关信息</p>
 </li>
-<li><p>-r：删除目录</p>
+<li><p>-t 查询TCP协议</p>
 </li>
-<li><p>-f：强行执行</p>
+<li><p>-u UDP协议</p>
+</li>
+<li><p>-l 监听</p>
+</li>
+<li><p>-r 路由</p>
+</li>
+<li><p>-n 显示ip和端口号</p>
 </li>
 </ul>
-<h3 id="touch：创建空文件"><a href="#touch：创建空文件" class="headerlink" title="touch：创建空文件"></a>touch：创建空文件</h3><h3 id="cat-查看文件内容"><a href="#cat-查看文件内容" class="headerlink" title="cat: 查看文件内容"></a>cat: 查看文件内容</h3><ul>
-<li>-n：显示行号</li>
+<p>例子：<br>netstat -tlun 查看本机监听的端口</p>
+<p>netstat -an 查看本机所有网络连接</p>
+<p>netstat -rn 查看本机路由表</p>
+<h2 id="setup：在其他版本的Linux不存在"><a href="#setup：在其他版本的Linux不存在" class="headerlink" title="setup：在其他版本的Linux不存在"></a>setup：在其他版本的Linux不存在</h2><p>自动配置网络</p>
+<h2 id="mount-挂载"><a href="#mount-挂载" class="headerlink" title="mount 挂载"></a>mount 挂载</h2><ul>
+<li>mount[-t 文件系统] 设备文件名 挂载点</li>
 </ul>
-<h3 id="tac：反向显示"><a href="#tac：反向显示" class="headerlink" title="tac：反向显示"></a>tac：反向显示</h3><h3 id="more：分页显示文件内容"><a href="#more：分页显示文件内容" class="headerlink" title="more：分页显示文件内容"></a>more：分页显示文件内容</h3><ul>
-<li><p>冒号：浏览</p>
-</li>
-<li><p>f、空格：翻页浏览</p>
-</li>
-<li><p>回车：一行一行浏览</p>
-</li>
-<li><p>q：退出</p>
-</li>
-</ul>
-<h3 id="less：可以向上翻页"><a href="#less：可以向上翻页" class="headerlink" title="less：可以向上翻页"></a>less：可以向上翻页</h3><ul>
-<li><p>和more一样</p>
-</li>
-<li><p>pageup：向上翻页</p>
-</li>
-<li><p>上箭头：向上换行</p>
-</li>
-<li><p>/：搜索:按n往后找</p>
-</li>
-</ul>
-<h3 id="head：查看文件前几行"><a href="#head：查看文件前几行" class="headerlink" title="head：查看文件前几行"></a>head：查看文件前几行</h3><ul>
-<li>-n：显示前n行，默认前几行</li>
-</ul>
-<h3 id="tail：后几行"><a href="#tail：后几行" class="headerlink" title="tail：后几行"></a>tail：后几行</h3><ul>
-<li><p>与head一样</p>
-</li>
-<li><p>-f：动态显示，如果有变动就会显示</p>
-</li>
-</ul>
-<h3 id="ln：链接"><a href="#ln：链接" class="headerlink" title="ln：链接"></a>ln：链接</h3><ul>
-<li>-s创建软链接</li>
-</ul>
-<p>ln -s file1 file2：生成file1的软链接file2</p>
-<p>软链接类似于Windows的快捷方式</p>
-<p>ln file1 file2：生成file1的硬链接file2</p>
-<p>硬链接可以同步更新，源文件即使丢失，硬链接也能生效</p>
-<p>如何区别硬链接和源文件</p>
-<p>注意：</p>
-<ol>
-<li><p>硬链接不能跨分区</p>
-</li>
-<li><p>硬链接不能针对目录使用</p>
-</li>
-</ol>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t iso9660 &#x2F;dev&#x2F;sr0 &#x2F;mnt&#x2F;cdrom&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="umount-卸载"><a href="#umount-卸载" class="headerlink" title="umount 卸载"></a>umount 卸载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  #退出目录</span><br><span class="line">umount [设备文件名&#x2F;挂载点]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -477,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%88%9D%E5%AD%A6%E8%80%85%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%87%A0%E7%82%B9/" rel="next" title="Linux入门――初学者需要注意的几点">
-                <i class="fa fa-chevron-left"></i> Linux入门――初学者需要注意的几点
+              <a href="/2020/04/17/Lin%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%91%BD%E4%BB%A4/" rel="next" title="Linux入门――压缩解压命令">
+                <i class="fa fa-chevron-left"></i> Linux入门――压缩解压命令
               </a>
             
           </div>
@@ -487,8 +454,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/16/RB-tree%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2/" rel="prev" title="RB_tree深度探索">
-                RB_tree深度探索 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux入门――关机重启命令">
+                Linux入门――关机重启命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -631,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">1.</span> <span class="nav-text">文件处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-list"><span class="nav-number">1.1.</span> <span class="nav-text">ls(list)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-make-directories-：创建目录"><span class="nav-number">1.2.</span> <span class="nav-text">mkdir(make directories)：创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-change-directory"><span class="nav-number">1.3.</span> <span class="nav-text">cd(change directory)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd-print-working-directory-：显示当前目录路径"><span class="nav-number">1.4.</span> <span class="nav-text">pwd(print working directory)：显示当前目录路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rmdir-remove-empty-direcories-：删除空白目录"><span class="nav-number">1.5.</span> <span class="nav-text">rmdir(remove empty direcories)：删除空白目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp-copy-：复制"><span class="nav-number">1.6.</span> <span class="nav-text">cp(copy)：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv-move-：剪切、移动-也可以改名"><span class="nav-number">1.7.</span> <span class="nav-text">mv(move)：剪切、移动,也可以改名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-remove-：删除"><span class="nav-number">1.8.</span> <span class="nav-text">rm(remove)：删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch：创建空文件"><span class="nav-number">1.9.</span> <span class="nav-text">touch：创建空文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat-查看文件内容"><span class="nav-number">1.10.</span> <span class="nav-text">cat: 查看文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tac：反向显示"><span class="nav-number">1.11.</span> <span class="nav-text">tac：反向显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more：分页显示文件内容"><span class="nav-number">1.12.</span> <span class="nav-text">more：分页显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less：可以向上翻页"><span class="nav-number">1.13.</span> <span class="nav-text">less：可以向上翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head：查看文件前几行"><span class="nav-number">1.14.</span> <span class="nav-text">head：查看文件前几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail：后几行"><span class="nav-number">1.15.</span> <span class="nav-text">tail：后几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln：链接"><span class="nav-number">1.16.</span> <span class="nav-text">ln：链接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#write"><span class="nav-number">1.</span> <span class="nav-text">write</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wall"><span class="nav-number">2.</span> <span class="nav-text">wall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">3.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ifconfig-ip-addr"><span class="nav-number">4.</span> <span class="nav-text">ifconfig&#x2F;ip addr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mail"><span class="nav-number">5.</span> <span class="nav-text">mail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#last"><span class="nav-number">6.</span> <span class="nav-text">last</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lastlog"><span class="nav-number">7.</span> <span class="nav-text">lastlog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#traceroute-探测到指定网站的路径"><span class="nav-number">8.</span> <span class="nav-text">traceroute 探测到指定网站的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-number">9.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup：在其他版本的Linux不存在"><span class="nav-number">10.</span> <span class="nav-text">setup：在其他版本的Linux不存在</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mount-挂载"><span class="nav-number">11.</span> <span class="nav-text">mount 挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umount-卸载"><span class="nav-number">12.</span> <span class="nav-text">umount 卸载</span></a></li></ol></div>
             
 
           </div>
@@ -801,9 +768,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2020/04/16/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E5%91%BD%E4%BB%A4/';
-          this.page.identifier = '2020/04/16/Linux入门――命令/';
-          this.page.title = 'Linux入门――文件处理命令';
+          this.page.url = 'http://yoursite.com/2020/04/17/Linux%E5%85%A5%E9%97%A8%E2%80%95%E2%80%95%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/';
+          this.page.identifier = '2020/04/17/Linux入门――网络命令/';
+          this.page.title = 'Linux入门――网络命令';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
