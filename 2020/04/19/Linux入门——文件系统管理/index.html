@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习记录," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="分区与文件系统分区类型 主分区：只能四个  扩展分区：只能算一个，也算做主分区的一种，也就是说主分区加扩展分区最多四个。但是扩展分区不能存储数据和格式化，必须划分成逻辑分区才能使用  逻辑分区：逻辑分区死在扩展分区的基础上划分的。如果是IDE硬盘，Linux最多支持59个逻辑分区，如果是SCSI硬盘Linux最多支持11个  主分区&#x2F;扩展分区1——4，逻辑分区5开始   文件系统ext2ext文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux入门——文件系统管理">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="叶某人">
+<meta property="og:description" content="分区与文件系统分区类型 主分区：只能四个  扩展分区：只能算一个，也算做主分区的一种，也就是说主分区加扩展分区最多四个。但是扩展分区不能存储数据和格式化，必须划分成逻辑分区才能使用  逻辑分区：逻辑分区死在扩展分区的基础上划分的。如果是IDE硬盘，Linux最多支持59个逻辑分区，如果是SCSI硬盘Linux最多支持11个  主分区&#x2F;扩展分区1——4，逻辑分区5开始   文件系统ext2ext文件">
+<meta property="article:published_time" content="2020-04-19T05:09:18.000Z">
+<meta property="article:modified_time" content="2020-04-19T09:07:34.362Z">
+<meta property="article:author" content="叶某人">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/Linux入门——文件系统管理/"/>
+
+
+
+
+
+  <title>Linux入门——文件系统管理 | 叶某人</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39ec0905036c00bc3b25f4ef357b6556";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶某人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶某人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux入门——文件系统管理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-19T13:09:18+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/19/Linux入门——文件系统管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="分区与文件系统"><a href="#分区与文件系统" class="headerlink" title="分区与文件系统"></a>分区与文件系统</h2><h3 id="分区类型"><a href="#分区类型" class="headerlink" title="分区类型"></a>分区类型</h3><ol>
+<li><p>主分区：只能四个</p>
+</li>
+<li><p>扩展分区：只能算一个，也算做主分区的一种，也就是说主分区加扩展分区最多四个。但是扩展分区不能存储数据和格式化，必须划分成逻辑分区才能使用</p>
+</li>
+<li><p>逻辑分区：逻辑分区死在扩展分区的基础上划分的。如果是IDE硬盘，Linux最多支持59个逻辑分区，如果是SCSI硬盘Linux最多支持11个</p>
+</li>
+<li><p>主分区/扩展分区1——4，逻辑分区5开始</p>
+</li>
+</ol>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><h4 id="ext2"><a href="#ext2" class="headerlink" title="ext2"></a>ext2</h4><p>ext文件系统的升级版本，RedHat Linux7.2版本以前的系统默认etx2，最大支持16TB的分区和最大2TB的文件</p>
+<h4 id="ext3"><a href="#ext3" class="headerlink" title="ext3"></a>ext3</h4><p>大小和ext2完全一样，多了日志功能，意外崩溃可以恢复</p>
+<h4 id="ext4"><a href="#ext4" class="headerlink" title="ext4"></a>ext4</h4><p>向下兼容EXT3、最大支持1EB文件系统个16TB文件，无线数量子目录、Extents连续数据块概念、多块分配、延迟分配、持久预分配</p>
+<h2 id="文件系统常用命令"><a href="#文件系统常用命令" class="headerlink" title="文件系统常用命令"></a>文件系统常用命令</h2><h3 id="df：统计文件系统的占用情况"><a href="#df：统计文件系统的占用情况" class="headerlink" title="df：统计文件系统的占用情况"></a>df：统计文件系统的占用情况</h3><p>选项：</p>
+<ul>
+<li>-h</li>
+</ul>
+<h3 id="du统计目录或文件大小"><a href="#du统计目录或文件大小" class="headerlink" title="du统计目录或文件大小"></a>du统计目录或文件大小</h3><p>选项：</p>
+<ul>
+<li><p>-a 显示子文件</p>
+</li>
+<li><p>-h 使用习惯单位显示磁盘占用量</p>
+</li>
+<li><p>-s统计总站用量，不列出子目录和子文件的占用量</p>
+</li>
+</ul>
+<h3 id="du和df的区别"><a href="#du和df的区别" class="headerlink" title="du和df的区别"></a>du和df的区别</h3><ol>
+<li><p>df命令是从文件系统考虑的，不光考虑文件系统占用的空间，还要统计被命令或程序占用的空间1</p>
+</li>
+<li><p>du命令是面向文件的，只会计算文件或者目录占用的空间</p>
+</li>
+</ol>
+<h3 id="文件系统修复命令fsck"><a href="#文件系统修复命令fsck" class="headerlink" title="文件系统修复命令fsck"></a>文件系统修复命令fsck</h3><p>fsck 选项 分区设备文件名</p>
+<p>选项：</p>
+<ul>
+<li><p>-a 不用显示用户提示，自动修复文件系统</p>
+</li>
+<li><p>-y 自动修复，和-a一样，不过有些系统只支持-y</p>
+</li>
+</ul>
+<h3 id="检测磁盘状态命令-dumpe2fs"><a href="#检测磁盘状态命令-dumpe2fs" class="headerlink" title="检测磁盘状态命令 dumpe2fs"></a>检测磁盘状态命令 dumpe2fs</h3><h2 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h2><h3 id="查询与自动挂载"><a href="#查询与自动挂载" class="headerlink" title="查询与自动挂载"></a>查询与自动挂载</h3><p>mount [-l] -l会显示卷标</p>
+<p>mount -a 依据/etc/fstab的内容自动挂载，光盘、U盘等不行</p>
+<h3 id="挂载命令格式"><a href="#挂载命令格式" class="headerlink" title="挂载命令格式"></a>挂载命令格式</h3><p>mount [-t 文件系统][-L 卷标名] \</p>
+<p>[-o 特殊选项] 设备文件名 挂载点(把设备文件名和挂载点连接起来)</p>
+<p>选项：</p>
+<p>-t 文件系统：加入文件系统类型来指定挂载的类型，可以etx3、etx4、iso9660等文件系统(硬盘、分区默认ext4，光驱为iso9660)</p>
+<p>-L 卷标名：挂载指定卷标的分区，而不是安装设备文件名挂载(起名字)</p>
+<p>-o 特殊选项：可以指定挂载的额外选项</p>
+<p>例如：mount -o remount, noexec /home/</p>
+<h3 id="挂载光盘与U盘"><a href="#挂载光盘与U盘" class="headerlink" title="挂载光盘与U盘"></a>挂载光盘与U盘</h3><h4 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h4><h5 id="创建挂载点"><a href="#创建挂载点" class="headerlink" title="创建挂载点"></a>创建挂载点</h5><p>mkdir /mnt/cdrom/   #挂载点</p>
+<p>mount -t iso9660 /dev/cdrom /mnt/cdrom #挂载光盘,/dev/cdrom是/dev/sr0的软链接</p>
+<p>mount /dev/sr0 /mnt/cdrom</p>
+<h5 id="卸载命令"><a href="#卸载命令" class="headerlink" title="卸载命令"></a>卸载命令</h5><p>umount 设备文件名或挂载点</p>
+<h4 id="挂载U盘"><a href="#挂载U盘" class="headerlink" title="挂载U盘"></a>挂载U盘</h4><p>fdisk -l #查看U盘设备文件名</p>
+<p>mount -t vfat /dev/sdb1 /mnt/usb/</p>
+<p>注意：Linux默认不支持NTFS文件系统</p>
+<h3 id="支持NTFS文件系统"><a href="#支持NTFS文件系统" class="headerlink" title="支持NTFS文件系统"></a>支持NTFS文件系统</h3><h4 id="内核编译"><a href="#内核编译" class="headerlink" title="内核编译"></a>内核编译</h4><p>用的很少</p>
+<h4 id="第三方软件"><a href="#第三方软件" class="headerlink" title="第三方软件"></a>第三方软件</h4><p>比如：NTFS-3G插件</p>
+<h2 id="fdisk分区"><a href="#fdisk分区" class="headerlink" title="fdisk分区"></a>fdisk分区</h2><h3 id="fdisk命令分区过程"><a href="#fdisk命令分区过程" class="headerlink" title="fdisk命令分区过程"></a>fdisk命令分区过程</h3><ol>
+<li><p>添加新硬盘·</p>
+</li>
+<li><p>查看新硬盘：fdisk -l</p>
+</li>
+<li><p>使用fdisk分区:fdisk /dev/sdb</p>
+<ul>
+<li><p>按n新建分区</p>
+<ul>
+<li><p>p代表主分区</p>
+</li>
+<li><p>e代表扩展分区</p>
+</li>
+<li><p>l代表逻辑分区</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>重新读取分区表信息：partprobe</p>
+</li>
+<li><p>格式化分区：mkfs -t 文件系统类型 /dev/sdb[n]</p>
+</li>
+<li><p>创建挂载点</p>
+</li>
+</ol>
+<h3 id="分区自动挂载与fstab文件修复"><a href="#分区自动挂载与fstab文件修复" class="headerlink" title="分区自动挂载与fstab文件修复"></a>分区自动挂载与fstab文件修复</h3><ol>
+<li><p>/etc/fstab文件</p>
+<ul>
+<li><p>第一字段：分区设备文件名或UUID(硬盘通用唯一识别码)</p>
+</li>
+<li><p>第二字段：挂载点</p>
+</li>
+<li><p>第三字段：文件系统名称</p>
+</li>
+<li><p>第四字段：挂载参数</p>
+</li>
+<li><p>第五字段：分区自动备份时间，0代表不备份、1代表每天备份、2代表不定期备份</p>
+</li>
+<li><p>第六字段：指定分区是否被fsck检测，0代表不检测，其他数字代表检测的优先级</p>
+</li>
+</ul>
+</li>
+<li><p>立即执行mount -a</p>
+</li>
+<li><p>/etc/fstab文件修复</p>
+<ul>
+<li><p>文件默认只读，需要重新挂载：mount -o remount,rm/</p>
+</li>
+<li><p>只有在文件报错的时候才能使用，若根分区出错，必须用其他方法</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="分配swap交换分区"><a href="#分配swap交换分区" class="headerlink" title="分配swap交换分区"></a>分配swap交换分区</h2><h3 id="free命令：查询swap占用概况"><a href="#free命令：查询swap占用概况" class="headerlink" title="free命令：查询swap占用概况"></a>free命令：查询swap占用概况</h3><ol>
+<li><p>缓存(cached)：把读取出来的数据保存到内存中，当再次读取时，不用读取硬盘而直接从内存当中读取，加速了读取的过程</p>
+</li>
+<li><p>buffer(缓冲)：是指在写入数据时，先把分散的写入操作保存到内存当中，当达到一定程度再集中写入硬盘，减少了磁盘碎片和硬盘的反复寻道，加速了数据的写入过程</p>
+</li>
+</ol>
+<h3 id="新建swap分区"><a href="#新建swap分区" class="headerlink" title="新建swap分区"></a>新建swap分区</h3><p>fdisk /dev/sdb</p>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><p>mkswap /dev/sdb</p>
+<p>###　加入swap</p>
+<p>swapon /dev/sdb</p>
+<p>swapoff</p>
+<h3 id="开机自动挂载"><a href="#开机自动挂载" class="headerlink" title="开机自动挂载"></a>开机自动挂载</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="tag"># 学习记录</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/18/%E5%AE%B9%E5%99%A8set-multiset/" rel="next" title="容器set&multiset">
+                <i class="fa fa-chevron-left"></i> 容器set&multiset
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94shell/" rel="prev" title="Linux入门——shell基础">
+                Linux入门——shell基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶某人</p>
+              <p class="site-description motion-element" itemprop="description">海到无边天作岸，山登绝顶我为峰</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7Carchive">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分区与文件系统"><span class="nav-number">1.</span> <span class="nav-text">分区与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分区类型"><span class="nav-number">1.1.</span> <span class="nav-text">分区类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统"><span class="nav-number">1.2.</span> <span class="nav-text">文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ext2"><span class="nav-number">1.2.1.</span> <span class="nav-text">ext2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ext3"><span class="nav-number">1.2.2.</span> <span class="nav-text">ext3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ext4"><span class="nav-number">1.2.3.</span> <span class="nav-text">ext4</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统常用命令"><span class="nav-number">2.</span> <span class="nav-text">文件系统常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#df：统计文件系统的占用情况"><span class="nav-number">2.1.</span> <span class="nav-text">df：统计文件系统的占用情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#du统计目录或文件大小"><span class="nav-number">2.2.</span> <span class="nav-text">du统计目录或文件大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#du和df的区别"><span class="nav-number">2.3.</span> <span class="nav-text">du和df的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统修复命令fsck"><span class="nav-number">2.4.</span> <span class="nav-text">文件系统修复命令fsck</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测磁盘状态命令-dumpe2fs"><span class="nav-number">2.5.</span> <span class="nav-text">检测磁盘状态命令 dumpe2fs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载命令"><span class="nav-number">3.</span> <span class="nav-text">挂载命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询与自动挂载"><span class="nav-number">3.1.</span> <span class="nav-text">查询与自动挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载命令格式"><span class="nav-number">3.2.</span> <span class="nav-text">挂载命令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载光盘与U盘"><span class="nav-number">3.3.</span> <span class="nav-text">挂载光盘与U盘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#光盘"><span class="nav-number">3.3.1.</span> <span class="nav-text">光盘</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建挂载点"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">创建挂载点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#卸载命令"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">卸载命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载U盘"><span class="nav-number">3.3.2.</span> <span class="nav-text">挂载U盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持NTFS文件系统"><span class="nav-number">3.4.</span> <span class="nav-text">支持NTFS文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内核编译"><span class="nav-number">3.4.1.</span> <span class="nav-text">内核编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三方软件"><span class="nav-number">3.4.2.</span> <span class="nav-text">第三方软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fdisk分区"><span class="nav-number">4.</span> <span class="nav-text">fdisk分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fdisk命令分区过程"><span class="nav-number">4.1.</span> <span class="nav-text">fdisk命令分区过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区自动挂载与fstab文件修复"><span class="nav-number">4.2.</span> <span class="nav-text">分区自动挂载与fstab文件修复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分配swap交换分区"><span class="nav-number">5.</span> <span class="nav-text">分配swap交换分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#free命令：查询swap占用概况"><span class="nav-number">5.1.</span> <span class="nav-text">free命令：查询swap占用概况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建swap分区"><span class="nav-number">5.2.</span> <span class="nav-text">新建swap分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化"><span class="nav-number">5.3.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机自动挂载"><span class="nav-number">5.4.</span> <span class="nav-text">开机自动挂载</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶某人</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/Linux%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/';
+          this.page.identifier = '2020/04/19/Linux入门——文件系统管理/';
+          this.page.title = 'Linux入门——文件系统管理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WYtTOpdKYeF648bzDlEDhtDR-gzGzoHsz',
+        appKey: 'sOdVcgdJvtgw4WfKIeC4YIPY',
+        placeholder: '',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
