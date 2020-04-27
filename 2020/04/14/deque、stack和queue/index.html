@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="叶某人">
 <meta property="og:description" content="概览deque是一种容器，它表现出一种双向开口的空间，可以在两边安插元素，也提供遍历操作，可以在中间安插元素。不同于array(数组)的不可扩充与vector(向量)的双倍扩充单向开口，其实现必然很有特点。 一些主要函数摘自《C++ Standard Library》(更详细的可以在这里查到):    操作 效果    deque&lt; Elem &gt; c default构造函数，产生一个没">
 <meta property="article:published_time" content="2020-04-14T12:35:00.000Z">
-<meta property="article:modified_time" content="2020-04-14T15:05:09.059Z">
+<meta property="article:modified_time" content="2020-04-26T05:36:19.636Z">
 <meta property="article:author" content="叶某人">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="STL">
@@ -450,7 +450,12 @@
 </tbody></table>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>由于篇幅原因，故不列出代码。</p>
 <p>deque（发音deck）能够做到两端开口，的确有它的特殊之处。</p>
-<h3 id="内部分类"><a href="#内部分类" class="headerlink" title="内部分类"></a>内部分类</h3><p>deque在内部实现上并非连续空间，而是总共有三部分（分段连续）：控制中心(map)、缓冲区（buffer），迭代器(iterator)<br>    - 控制中心（map）<br>    控制中心是由vector来实现的，其元素为指向缓冲区的指针。vector中元素分布在中间，当需要扩充的时候，vector两倍扩大之后，总是在中部复制。<br>    - 缓冲区（buffer）<br>    这一部分是由很多个不同的分段空间（数组）组成的，没有任何特殊的地方，就是在最尾端为一个没有任何元素的虚拟的空间。<br>    - 迭代器（iterator)<br>    迭代器由四部分组成：指向元素的cur，指向某个缓冲区首位元素的first和last，以及指向控制中心的node。在这里面，最特殊的有两个迭代器，分别指向第一个缓冲区和最后一个缓冲区的下一个位置（start、finish）</p>
+<h3 id="内部分类"><a href="#内部分类" class="headerlink" title="内部分类"></a>内部分类</h3><p>deque在内部实现上并非连续空间，而是总共有三部分（分段连续）：控制中心(map)、缓冲区（buffer），迭代器(iterator)</p>
+<ul>
+<li>控制中心（map）<br>   控制中心是由vector来实现的，其元素为指向缓冲区的指针。vector中元素分布在中间，当需要扩充的时候，vector两倍扩大之后，总是在中部复制。</li>
+<li>缓冲区（buffer）<br>   这一部分是由很多个不同的分段空间（数组）组成的，没有任何特殊的地方，就是在最尾端为一个没有任何元素的虚拟的空间。</li>
+<li>迭代器（iterator)<br>   迭代器由四部分组成：指向元素的cur，指向某个缓冲区首位元素的first和last，以及指向控制中心的node。在这里面，最特殊的有两个迭代器，分别指向第一个缓冲区和最后一个缓冲区的下一个位置（start、finish）</li>
+</ul>
 <h3 id="如何模拟连续空间"><a href="#如何模拟连续空间" class="headerlink" title="如何模拟连续空间"></a>如何模拟连续空间</h3><p>模拟连续空间就是要做到数组和向量的各种操作，对于分段的deque来说主要是通过iterator和操作符重载，当迭代器到了一个缓冲区的边界，就回到控制中心到达下一个缓冲区，这就是模拟连续空间最关键的一点；要得到数组大小之类的操作，就主要靠操作符的重载。<br>迭代器和操作符重载具体细节不做深究，要想深入研究，可以看侯捷大佬的视频<a href="https://www.bilibili.com/video/BV1db411q7B8?from=search&seid=8288992726534619164" target="_blank" rel="noopener">C++体系结构与内核分析</a>和看侯捷大佬的书《STL源码剖析》</p>
 <h2 id="关于stack和queue"><a href="#关于stack和queue" class="headerlink" title="关于stack和queue"></a>关于stack和queue</h2><p>因为其功能的考量，他们不提供遍历操作和迭代器<br>实际上，在stack和queue中是有一个deque的，只要将deque的一些功能封掉就形成了stack和queue。<br>所以实际上，并非只有deque可以作为二者的底层容器，只要能够提供二者功能所需的函数就行，具体来说：</p>
 <ul>
@@ -590,7 +595,7 @@
               
                 <a href="/archives%7C%7Carchive">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -601,7 +606,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -612,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

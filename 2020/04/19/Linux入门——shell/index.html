@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="叶某人">
 <meta property="og:description" content="Shell概述什么是shell命令解释器，交互界面 将命令转化为机器语言，将机器语言翻译成自然语言 Windows的shell：图像，侦测到鼠标单击，就触发shell shell也是一个功能强大的编程语言，易编写、易调试、灵活性强。shell是解释执行的脚本语言，在shell中可以直接调用Linux系统命令 shell的分类 Bourne Shell  C Shell：语法结构类似c语言  Lin">
 <meta property="article:published_time" content="2020-04-19T09:07:22.000Z">
-<meta property="article:modified_time" content="2020-04-21T02:19:11.060Z">
+<meta property="article:modified_time" content="2020-04-22T10:32:27.613Z">
 <meta property="article:author" content="叶某人">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -547,6 +547,131 @@
 <td></td>
 </tr>
 </tbody></table>
+<ul>
+<li>dd if=输入文件 of=输出文件 bs=字节数 count=个数</li>
+</ul>
+<p>主要用来进行磁盘复制</p>
+<p>例如： date; dd if=/dev/zero of=/root/testfile bs=1k count 1000000;date</p>
+<h4 id="管道符"><a href="#管道符" class="headerlink" title="管道符"></a>管道符</h4><p>命令1的正确输出作为命令2的操作对象</p>
+<p>比如： ll -a /etc/ | more</p>
+<p>注意：命令1必须正确执行</p>
+<p>grep 选项 “搜索内容” 文件名</p>
+<p>选项</p>
+<ul>
+<li><p>-i 忽略大小写</p>
+</li>
+<li><p>-n 输出行号</p>
+</li>
+<li><p>-v 反向查找</p>
+</li>
+<li><p>–color=auto 用颜色显示关键字</p>
+</li>
+</ul>
+<h3 id="通配符与"><a href="#通配符与" class="headerlink" title="通配符与"></a>通配符与</h3><h4 id="通配符（匹配文件名）"><a href="#通配符（匹配文件名）" class="headerlink" title="通配符（匹配文件名）"></a>通配符（匹配文件名）</h4><ol>
+<li><p>? 匹配任意一个字符</p>
+</li>
+<li><p>*匹配任何内容</p>
+</li>
+<li><p>[]陪陪括号中任意一个字符</p>
+</li>
+<li><p>[-]匹配括号中范围任意一个</p>
+</li>
+<li><p>[^]逻辑非，匹配不属于范围的</p>
+</li>
+</ol>
+<h5 id="其他符号"><a href="#其他符号" class="headerlink" title="其他符号"></a>其他符号</h5><ul>
+<li><p>‘’ 单引号，所有特殊符号都没有含义</p>
+</li>
+<li><p>“” 双引号，特殊符号有特殊意义</p>
+</li>
+<li><p>`` 反引号，系统命令，首先执行，与$()一样</p>
+</li>
+<li><p>$ 与反引号一样</p>
+</li>
+<li><p>#注释</p>
+</li>
+<li><p>$ 用于调用变量的值</p>
+</li>
+<li><p>\ 转义符，跟在\之后的特殊符号将失去特殊含义</p>
+</li>
+</ul>
+<h2 id="Bash变量"><a href="#Bash变量" class="headerlink" title="Bash变量"></a>Bash变量</h2><h3 id="用户自定义变量"><a href="#用户自定义变量" class="headerlink" title="用户自定义变量"></a>用户自定义变量</h3><p>Linux默认类型是字符串</p>
+<p>变量赋值等号两侧不能有空格</p>
+<p>变量值有空格加引号</p>
+<p>变量可以叠加</p>
+<p>命令的结果可以赋给变量，要用``和$()符号括起来</p>
+<p>环境变量建议大写</p>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><ol>
+<li><p>用户自定义变量</p>
+</li>
+<li><p>环境变量：和操作系统环境相关的数据</p>
+</li>
+<li><p>位置参数变量：向脚本传递参数和数据，不能自定义，只能改值</p>
+</li>
+<li><p>预定义变量：类似位置参数变量</p>
+</li>
+</ol>
+<h3 id="本地变量（用户自定义变量）"><a href="#本地变量（用户自定义变量）" class="headerlink" title="本地变量（用户自定义变量）"></a>本地变量（用户自定义变量）</h3><p><code>x=value</code></p>
+<p>用<code>echo</code>调用</p>
+<p>变量叠加，用<code>${x}value</code>或者<code>x=&quot;$x&quot;value</code></p>
+<p>变量查看：<code>set</code></p>
+<p>变量删除<code>unset</code></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><h4 id="环境变量是什么"><a href="#环境变量是什么" class="headerlink" title="环境变量是什么"></a>环境变量是什么</h4><p>用户自定义变量只在当前shell生效，环境变量会在当前Shell和它所有子shell生效，如果写入配置文件，那么就会在所有shell生效</p>
+<h4 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h4><p><code>export 变量名=变量值</code></p>
+<p><code>env</code> 查询变量</p>
+<p><code>unset</code></p>
+<h4 id="两个环境变量"><a href="#两个环境变量" class="headerlink" title="两个环境变量"></a>两个环境变量</h4><h5 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h5><p>系统查找命令的路径，用<code>:</code>连接</p>
+<p>比如：PATH=”$PATH”:/root</p>
+<h5 id="PS1"><a href="#PS1" class="headerlink" title="PS1"></a>PS1</h5><p>提示符</p>
+<h3 id="位置参数变量"><a href="#位置参数变量" class="headerlink" title="位置参数变量"></a>位置参数变量</h3><table>
+<thead>
+<tr>
+<th>位置参数变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$n</td>
+<td>n为数字，$0代表命令本身，$1-$9代表第一到第九歌参数，大于10用{}连接</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>返回命令行所有的参数，看成整体</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>返回所有参数，区别对待</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>返回参数个数</td>
+</tr>
+</tbody></table>
+<h3 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h3><ul>
+<li><p>$? 返回最后一次执行命令的返回状态：0或非0</p>
+</li>
+<li><p>$$ 显示当前进程的进程号</p>
+</li>
+<li><p>$! 显示后台最后一个进程的进程号</p>
+</li>
+</ul>
+<h4 id="接受键盘输入"><a href="#接受键盘输入" class="headerlink" title="接受键盘输入"></a>接受键盘输入</h4><p>read 选项 变量名</p>
+<p>选项：</p>
+<ul>
+<li><p>-P “提示信息” ：等待read输入时，输出提示信息</p>
+</li>
+<li><p>-n 秒数 等待时间</p>
+</li>
+<li><p>-n 字符数，接收指定字符数后结束</p>
+</li>
+<li><p>-s 隐藏输入</p>
+</li>
+</ul>
+<h3 id="数值运算与运算符"><a href="#数值运算与运算符" class="headerlink" title="数值运算与运算符"></a>数值运算与运算符</h3><h4 id="declare声明变量类型"><a href="#declare声明变量类型" class="headerlink" title="declare声明变量类型"></a>declare声明变量类型</h4><p>declare [+/-]选项 变量名</p>
+<ul>
+<li>变量设置属性</li>
+</ul>
+<h4 id="数值运算方法"><a href="#数值运算方法" class="headerlink" title="数值运算方法"></a>数值运算方法</h4><p>$((运算式))或$[运算式]</p>
 
       
     </div>
@@ -676,7 +801,7 @@
               
                 <a href="/archives%7C%7Carchive">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -687,7 +812,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -698,7 +823,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -731,7 +856,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell概述"><span class="nav-number">1.</span> <span class="nav-text">Shell概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.1.</span> <span class="nav-text">什么是shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell的分类"><span class="nav-number">1.2.</span> <span class="nav-text">shell的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux支持的shell"><span class="nav-number">1.3.</span> <span class="nav-text">Linux支持的shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell脚本的执行方式"><span class="nav-number">2.</span> <span class="nav-text">shell脚本的执行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo输出命令"><span class="nav-number">2.1.</span> <span class="nav-text">echo输出命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash基本功能"><span class="nav-number">3.</span> <span class="nav-text">Bash基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#历史命令与补全"><span class="nav-number">3.1.</span> <span class="nav-text">历史命令与补全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史命令"><span class="nav-number">3.1.1.</span> <span class="nav-text">历史命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令补全"><span class="nav-number">3.1.2.</span> <span class="nav-text">命令补全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名与快捷键"><span class="nav-number">3.2.</span> <span class="nav-text">命令别名与快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令执行顺序"><span class="nav-number">3.2.1.</span> <span class="nav-text">命令执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快捷键"><span class="nav-number">3.2.2.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出重定向"><span class="nav-number">3.3.</span> <span class="nav-text">输入输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准输入输出"><span class="nav-number">3.3.1.</span> <span class="nav-text">标准输入输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出重定向"><span class="nav-number">3.3.2.</span> <span class="nav-text">输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更实用的输出重定向"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">更实用的输出重定向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wc-输入重定向"><span class="nav-number">3.3.3.</span> <span class="nav-text">wc 输入重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多命令顺序执行与管道符"><span class="nav-number">3.4.</span> <span class="nav-text">多命令顺序执行与管道符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多命令顺序执行"><span class="nav-number">3.4.1.</span> <span class="nav-text">多命令顺序执行</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell概述"><span class="nav-number">1.</span> <span class="nav-text">Shell概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是shell"><span class="nav-number">1.1.</span> <span class="nav-text">什么是shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell的分类"><span class="nav-number">1.2.</span> <span class="nav-text">shell的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux支持的shell"><span class="nav-number">1.3.</span> <span class="nav-text">Linux支持的shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell脚本的执行方式"><span class="nav-number">2.</span> <span class="nav-text">shell脚本的执行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo输出命令"><span class="nav-number">2.1.</span> <span class="nav-text">echo输出命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash基本功能"><span class="nav-number">3.</span> <span class="nav-text">Bash基本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#历史命令与补全"><span class="nav-number">3.1.</span> <span class="nav-text">历史命令与补全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史命令"><span class="nav-number">3.1.1.</span> <span class="nav-text">历史命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令补全"><span class="nav-number">3.1.2.</span> <span class="nav-text">命令补全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令别名与快捷键"><span class="nav-number">3.2.</span> <span class="nav-text">命令别名与快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令执行顺序"><span class="nav-number">3.2.1.</span> <span class="nav-text">命令执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快捷键"><span class="nav-number">3.2.2.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出重定向"><span class="nav-number">3.3.</span> <span class="nav-text">输入输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准输入输出"><span class="nav-number">3.3.1.</span> <span class="nav-text">标准输入输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出重定向"><span class="nav-number">3.3.2.</span> <span class="nav-text">输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更实用的输出重定向"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">更实用的输出重定向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wc-输入重定向"><span class="nav-number">3.3.3.</span> <span class="nav-text">wc 输入重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多命令顺序执行与管道符"><span class="nav-number">3.4.</span> <span class="nav-text">多命令顺序执行与管道符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多命令顺序执行"><span class="nav-number">3.4.1.</span> <span class="nav-text">多命令顺序执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管道符"><span class="nav-number">3.4.2.</span> <span class="nav-text">管道符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通配符与"><span class="nav-number">3.5.</span> <span class="nav-text">通配符与</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通配符（匹配文件名）"><span class="nav-number">3.5.1.</span> <span class="nav-text">通配符（匹配文件名）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#其他符号"><span class="nav-number">3.5.1.1.</span> <span class="nav-text">其他符号</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash变量"><span class="nav-number">4.</span> <span class="nav-text">Bash变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户自定义变量"><span class="nav-number">4.1.</span> <span class="nav-text">用户自定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量类型"><span class="nav-number">4.2.</span> <span class="nav-text">变量类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地变量（用户自定义变量）"><span class="nav-number">4.3.</span> <span class="nav-text">本地变量（用户自定义变量）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">4.4.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量是什么"><span class="nav-number">4.4.1.</span> <span class="nav-text">环境变量是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置环境变量"><span class="nav-number">4.4.2.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个环境变量"><span class="nav-number">4.4.3.</span> <span class="nav-text">两个环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PATH"><span class="nav-number">4.4.3.1.</span> <span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PS1"><span class="nav-number">4.4.3.2.</span> <span class="nav-text">PS1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置参数变量"><span class="nav-number">4.5.</span> <span class="nav-text">位置参数变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预定义变量"><span class="nav-number">4.6.</span> <span class="nav-text">预定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接受键盘输入"><span class="nav-number">4.6.1.</span> <span class="nav-text">接受键盘输入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值运算与运算符"><span class="nav-number">4.7.</span> <span class="nav-text">数值运算与运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#declare声明变量类型"><span class="nav-number">4.7.1.</span> <span class="nav-text">declare声明变量类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值运算方法"><span class="nav-number">4.7.2.</span> <span class="nav-text">数值运算方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

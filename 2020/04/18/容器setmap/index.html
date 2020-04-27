@@ -81,12 +81,12 @@
 
 <meta name="description" content="容器set简介set&#x2F;multiset是以rb_tree为底层结构，因此以key(value)为依据自动排序。 set&#x2F;multiset提供遍历操作以及iterator，按正常规则(++ite)遍历，以便能获得排序状态 无法使用iterator改变元素值 set和multiset调用的函数不同 set in GNC12345678910111213141516171819template&lt;c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="容器set&amp;multiset">
-<meta property="og:url" content="http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8set-multiset/index.html">
+<meta property="og:title" content="容器set&#x2F;map">
+<meta property="og:url" content="http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8setmap/index.html">
 <meta property="og:site_name" content="叶某人">
 <meta property="og:description" content="容器set简介set&#x2F;multiset是以rb_tree为底层结构，因此以key(value)为依据自动排序。 set&#x2F;multiset提供遍历操作以及iterator，按正常规则(++ite)遍历，以便能获得排序状态 无法使用iterator改变元素值 set和multiset调用的函数不同 set in GNC12345678910111213141516171819template&lt;c">
 <meta property="article:published_time" content="2020-04-18T14:37:13.000Z">
-<meta property="article:modified_time" content="2020-04-18T15:43:41.421Z">
+<meta property="article:modified_time" content="2020-04-25T13:56:25.116Z">
 <meta property="article:author" content="叶某人">
 <meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/18/容器set-multiset/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/18/容器setmap/"/>
 
 
 
 
 
-  <title>容器set&multiset | 叶某人</title>
+  <title>容器set/map | 叶某人</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8set-multiset/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8setmap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="叶某人">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">容器set&multiset</h1>
+          <h1 class="post-title" itemprop="name headline">容器set/map</h1>
         
 
         <div class="post-meta">
@@ -343,9 +343,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/18/%E5%AE%B9%E5%99%A8set-multiset/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/18/%E5%AE%B9%E5%99%A8setmap/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/18/容器set-multiset/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/18/容器setmap/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,11 +387,19 @@
 <h2 id="容器map"><a href="#容器map" class="headerlink" title="容器map"></a>容器map</h2><h3 id="map简介"><a href="#map简介" class="headerlink" title="map简介"></a>map简介</h3><p>map/multimap以rb_tree为底层结构，可以自动排序，依据是key</p>
 <p>map/multimap提供遍历操作以及itrator，按正常规则(++ite)遍历，以便获得排序状态</p>
 <p>无法使用iterator改变key，可以改变data</p>
-<h3 id="map-in-GNUC"><a href="#map-in-GNUC" class="headerlink" title="map in GNUC"></a>map in GNUC</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>,</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">T</span>,</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">Compare</span> = <span class="title">less</span>&lt;Key&gt;</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">Alloc</span> = <span class="title">alloc</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">map</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> Key key_type;</span><br><span class="line">    <span class="keyword">typedef</span> T data_type;</span><br><span class="line">    <span class="keyword">typedef</span> T mapped_type;</span><br><span class="line">    <span class="keyword">typedef</span> pair&lt;<span class="keyword">const</span> Key, T&gt; value_type;</span><br><span class="line">    <span class="keyword">typedef</span> Compare key_compare;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">typedef</span> rb_tree&lt;key_type, value_type,</span><br><span class="line">                    seclect1st&lt;value_type&gt;, key_compare, Alloc&gt; rep_type;</span><br><span class="line">    rep_type t;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> rep_type::iterator iterator;</span><br><span class="line">...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="map-in-GNUC"><a href="#map-in-GNUC" class="headerlink" title="map in GNUC"></a>map in GNUC</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>,</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">T</span>,</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">Compare</span> = <span class="title">less</span>&lt;Key&gt;</span></span><br><span class="line"><span class="class">        <span class="title">class</span> <span class="title">Alloc</span> = <span class="title">alloc</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">map</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> Key key_type;</span><br><span class="line">    <span class="keyword">typedef</span> T data_type;</span><br><span class="line">    <span class="keyword">typedef</span> T mapped_type;</span><br><span class="line">    <span class="keyword">typedef</span> pair&lt;<span class="keyword">const</span> Key, T&gt; value_type;</span><br><span class="line">    <span class="keyword">typedef</span> Compare key_compare;</span><br><span class="line"><span class="keyword">private</span>:ma</span><br><span class="line">    <span class="keyword">typedef</span> rb_tree&lt;key_type, value_type,</span><br><span class="line">                    seclect1st&lt;value_type&gt;, key_compare, Alloc&gt; rep_type;</span><br><span class="line">    rep_type t;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> rep_type::iterator iterator;</span><br><span class="line">...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="map-in-VC6"><a href="#map-in-VC6" class="headerlink" title="map in VC6"></a>map in VC6</h3><p>vc6不提供select1st</p>
 <p>vc6在容器内定义了一个仿函数_Kfn</p>
-<h3 id="map-独特的operatpr"><a href="#map-独特的operatpr" class="headerlink" title="map 独特的operatpr[]"></a>map 独特的operatpr[]</h3>
+<h3 id="map-独特的operatpor"><a href="#map-独特的operatpor" class="headerlink" title="map 独特的operatpor[]"></a>map 独特的operatpor[]</h3><p>GunC的注解：</p>
+<blockquote>
+<p>传回与中括号中的key相对应的数据，如果key不存在，中括号就会使用默认构造函数创建与key相对应的data</p>
+</blockquote>
+<p>源代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//operator[] in gunc</span></span><br><span class="line">mapped_type&amp;</span><br><span class="line">    <span class="keyword">operator</span>[](<span class="keyword">const</span> key_type&amp; __k)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">     iterator _i = lower_bound(__k);</span><br><span class="line">    <span class="keyword">if</span>(_i == <span class="built_in">end</span>()||key_comp()(_k,(*_i).first))</span><br><span class="line">        _i = insert(_i,value_type(_k,mapped_type()));</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中函数<code>lower_bound</code>是二分搜寻的一个版本，在[first,end)寻找元素value，若有与value相同的元素，便返回一个指向第一个元素的迭代器，假设没有，便返回这个元素最应该出现的位置</p>
+
       
     </div>
     
@@ -520,7 +528,7 @@
               
                 <a href="/archives%7C%7Carchive">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -531,7 +539,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -542,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -575,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器set"><span class="nav-number">1.</span> <span class="nav-text">容器set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-in-GNC"><span class="nav-number">1.2.</span> <span class="nav-text">set in GNC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-in-VC6"><span class="nav-number">1.3.</span> <span class="nav-text">set in VC6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器map"><span class="nav-number">2.</span> <span class="nav-text">容器map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map简介"><span class="nav-number">2.1.</span> <span class="nav-text">map简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-in-GNUC"><span class="nav-number">2.2.</span> <span class="nav-text">map in GNUC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-in-VC6"><span class="nav-number">2.3.</span> <span class="nav-text">map in VC6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-独特的operatpr"><span class="nav-number">2.4.</span> <span class="nav-text">map 独特的operatpr[]</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#容器set"><span class="nav-number">1.</span> <span class="nav-text">容器set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-in-GNC"><span class="nav-number">1.2.</span> <span class="nav-text">set in GNC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-in-VC6"><span class="nav-number">1.3.</span> <span class="nav-text">set in VC6</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器map"><span class="nav-number">2.</span> <span class="nav-text">容器map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map简介"><span class="nav-number">2.1.</span> <span class="nav-text">map简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-in-GNUC"><span class="nav-number">2.2.</span> <span class="nav-text">map in GNUC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-in-VC6"><span class="nav-number">2.3.</span> <span class="nav-text">map in VC6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-独特的operatpor"><span class="nav-number">2.4.</span> <span class="nav-text">map 独特的operatpor[]</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -745,9 +753,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8set-multiset/';
-          this.page.identifier = '2020/04/18/容器set-multiset/';
-          this.page.title = '容器set&multiset';
+          this.page.url = 'http://yoursite.com/2020/04/18/%E5%AE%B9%E5%99%A8setmap/';
+          this.page.identifier = '2020/04/18/容器setmap/';
+          this.page.title = '容器set/map';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

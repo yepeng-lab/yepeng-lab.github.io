@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介研究对象自然界一切宏观物质运动系统：分子动理论 研究方法微观气体动理论 宏观热力学 气体动理论平衡态、理想气体物态方程平衡态：一定量的气体，在不受外界影响，一段时间后，达到宏观性质的平衡 平衡态的特点 单一性（P、T处处相等）  物态的稳定性——与时间无关  自发过程的终点  热动平衡，是各向同性的平衡   气体的物态参量（宏观） 压强$p$：单位器壁面积上所受到的分子作用的平均冲力  单位：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="热学">
+<meta property="og:url" content="http://yoursite.com/2020/04/22/%E7%83%AD%E5%AD%A6/index.html">
+<meta property="og:site_name" content="叶某人">
+<meta property="og:description" content="简介研究对象自然界一切宏观物质运动系统：分子动理论 研究方法微观气体动理论 宏观热力学 气体动理论平衡态、理想气体物态方程平衡态：一定量的气体，在不受外界影响，一段时间后，达到宏观性质的平衡 平衡态的特点 单一性（P、T处处相等）  物态的稳定性——与时间无关  自发过程的终点  热动平衡，是各向同性的平衡   气体的物态参量（宏观） 压强$p$：单位器壁面积上所受到的分子作用的平均冲力  单位：">
+<meta property="article:published_time" content="2020-04-22T06:03:32.000Z">
+<meta property="article:modified_time" content="2020-04-26T13:43:35.272Z">
+<meta property="article:author" content="叶某人">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/22/热学/"/>
+
+
+
+
+
+  <title>热学 | 叶某人</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39ec0905036c00bc3b25f4ef357b6556";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶某人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/22/%E7%83%AD%E5%AD%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="叶某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶某人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">热学</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T14:03:32+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%83%AD%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">热学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/22/%E7%83%AD%E5%AD%A6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/22/热学/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="研究对象"><a href="#研究对象" class="headerlink" title="研究对象"></a>研究对象</h3><p>自然界一切宏观物质运动系统：分子动理论</p>
+<h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><h4 id="微观"><a href="#微观" class="headerlink" title="微观"></a>微观</h4><p>气体动理论</p>
+<h4 id="宏观"><a href="#宏观" class="headerlink" title="宏观"></a>宏观</h4><p>热力学</p>
+<h2 id="气体动理论"><a href="#气体动理论" class="headerlink" title="气体动理论"></a>气体动理论</h2><h3 id="平衡态、理想气体物态方程"><a href="#平衡态、理想气体物态方程" class="headerlink" title="平衡态、理想气体物态方程"></a>平衡态、理想气体物态方程</h3><p>平衡态：一定量的气体，在不受外界影响，一段时间后，达到宏观性质的平衡</p>
+<h4 id="平衡态的特点"><a href="#平衡态的特点" class="headerlink" title="平衡态的特点"></a>平衡态的特点</h4><ol>
+<li><p>单一性（P、T处处相等）</p>
+</li>
+<li><p>物态的稳定性——与时间无关</p>
+</li>
+<li><p>自发过程的终点</p>
+</li>
+<li><p>热动平衡，是各向同性的平衡</p>
+</li>
+</ol>
+<h4 id="气体的物态参量（宏观）"><a href="#气体的物态参量（宏观）" class="headerlink" title="气体的物态参量（宏观）"></a>气体的物态参量（宏观）</h4><ol>
+<li><p>压强$p$：单位器壁面积上所受到的分子作用的平均冲力</p>
+<ul>
+<li><p>单位：帕斯卡($pa$)，标准大气压，$mmHg$</p>
+</li>
+<li><p>换算：$$1 atm=1.01 × 10^5 Pa =760mmHg$$</p>
+<p>$$1mmHg=133Pa$$</p>
+</li>
+</ul>
+</li>
+<li><p>体积$V$：气体充满的容器体积大小</p>
+<ul>
+<li>单位：$1m^3=10^3l=10^6ml$</li>
+</ul>
+</li>
+<li><p>温度：描述系统冷热程度的物理量</p>
+<ul>
+<li><p>$$T=273.15+t$$</p>
+</li>
+<li><p>单位：开尔文($K$)</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="理想气体物态方程"><a href="#理想气体物态方程" class="headerlink" title="理想气体物态方程"></a>理想气体物态方程</h4><p>$$f(P,V,T)=0$$</p>
+<p>一个气体系统受到外界干涉，变化，但是$$\frac{PV}{T}$$始终不变</p>
+<ol>
+<li>标准状态：</li>
+</ol>
+<p>$$P_0=1atm$$</p>
+<p>$$T_0=273K$$</p>
+<p>$$v_0=22.4L$$</p>
+<p>即：$$\frac{PV}{T}=\frac{P_0V_0}{T_0}=\frac{P_0\frac{m’}{M}v_0}{T_0}=R\frac{m’}{M}$$</p>
+<p>$$R=\frac{p_0v_0}{T_0}=8.31J/{mol \cdot K}$$</p>
+<p>$$pV=\frac{m’}{M}RT=vRT=\frac{N}{N_A}RT=$$</p>
+<p>$$p=\frac{N}{V}\cdot\frac{R}{N_A}\cdot T=nKT$$</p>
+<p>其中：$$n=\frac{N}{V}$$被称为<em>分子数密度</em></p>
+<p>$$K=\frac{R}{N_A}=1.38×10^{-23}J/K$$</p>
+<h3 id="微观模型及统计规律"><a href="#微观模型及统计规律" class="headerlink" title="微观模型及统计规律"></a>微观模型及统计规律</h3><h4 id="理想气体分子模型"><a href="#理想气体分子模型" class="headerlink" title="理想气体分子模型"></a>理想气体分子模型</h4><ol>
+<li><p>分子结构和大小忽略不计</p>
+</li>
+<li><p>相互作用忽略</p>
+</li>
+<li><p>碰撞为完全弹性碰撞</p>
+</li>
+</ol>
+<h4 id="对分子集体的统计假设"><a href="#对分子集体的统计假设" class="headerlink" title="对分子集体的统计假设"></a>对分子集体的统计假设</h4><h5 id="统计规律性"><a href="#统计规律性" class="headerlink" title="统计规律性"></a>统计规律性</h5><p>大量偶然事件从整体反映出来的规律</p>
+<h5 id="概率的定义"><a href="#概率的定义" class="headerlink" title="概率的定义"></a>概率的定义</h5><p>某一事件的概率：$P_i$</p>
+<p>$N_i$事件i发生的次数</p>
+<p>$N$各种事件发生的总次数</p>
+<p>$$p_i=\lim_{N \to \infty}\frac{N_i}{N}$$</p>
+<h5 id="统计规律有几个特点"><a href="#统计规律有几个特点" class="headerlink" title="统计规律有几个特点"></a>统计规律有几个特点</h5><ol>
+<li><p>大量的事件</p>
+</li>
+<li><p>统计平均值</p>
+</li>
+<li><p>伴随涨落和起伏</p>
+</li>
+<li><p>通过求统计平均值来揭示规律</p>
+</li>
+</ol>
+<h4 id="统计平均值"><a href="#统计平均值" class="headerlink" title="统计平均值"></a>统计平均值</h4><p>$x_i\frac{N_i}{N}$的和</p>
+<p>当$N \to \infty $时$x$的算术平均值的极限就是$x$的统计平均值</p>
+<h3 id="理想气体压强公式和温度公式"><a href="#理想气体压强公式和温度公式" class="headerlink" title="理想气体压强公式和温度公式"></a>理想气体压强公式和温度公式</h3><h4 id="理想气体的统一假设"><a href="#理想气体的统一假设" class="headerlink" title="理想气体的统一假设"></a>理想气体的统一假设</h4><p>在平衡态下，气体分子运动各向同性，向各个方向运动的几率相对等</p>
+<h4 id="压强的本质"><a href="#压强的本质" class="headerlink" title="压强的本质"></a>压强的本质</h4><p>气体的压强是大量分子对器壁碰撞作用的统计平均值</p>
+<h4 id="理想气体压强公式"><a href="#理想气体压强公式" class="headerlink" title="理想气体压强公式"></a>理想气体压强公式</h4><p>一个分子碰撞一次器壁冲量：$$I_i=2mv_{ix}$$（$x$轴方向）</p>
+<p>一次碰撞时间：$$\frac{2l}{v_{ix}}$$</p>
+<p>$\Delta{t}$内，碰撞次数：$$\Delta{t}\frac{v_{ix}}{2l_1}$$</p>
+<p>$\Delta{t}$内，一个分子总冲量：$$m\frac{v^2_{ix}}<br>{l_1}\Delta{t}$$</p>
+<h4 id="理想气体温度公式"><a href="#理想气体温度公式" class="headerlink" title="理想气体温度公式"></a>理想气体温度公式</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/21/%E7%A9%BA%E9%97%B4%E7%9B%B4%E7%BA%BF/" rel="next" title="空间直线">
+                <i class="fa fa-chevron-left"></i> 空间直线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/23/%E5%93%B2%E5%AD%A6%E5%85%A5%E9%97%A8%E2%80%94%E2%80%94%E9%80%BB%E8%BE%91/" rel="prev" title="哲学入门——逻辑">
+                哲学入门——逻辑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">叶某人</p>
+              <p class="site-description motion-element" itemprop="description">海到无边天作岸，山登绝顶我为峰</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7Carchive">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#研究对象"><span class="nav-number">1.1.</span> <span class="nav-text">研究对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研究方法"><span class="nav-number">1.2.</span> <span class="nav-text">研究方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#微观"><span class="nav-number">1.2.1.</span> <span class="nav-text">微观</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏观"><span class="nav-number">1.2.2.</span> <span class="nav-text">宏观</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#气体动理论"><span class="nav-number">2.</span> <span class="nav-text">气体动理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡态、理想气体物态方程"><span class="nav-number">2.1.</span> <span class="nav-text">平衡态、理想气体物态方程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#平衡态的特点"><span class="nav-number">2.1.1.</span> <span class="nav-text">平衡态的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#气体的物态参量（宏观）"><span class="nav-number">2.1.2.</span> <span class="nav-text">气体的物态参量（宏观）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理想气体物态方程"><span class="nav-number">2.1.3.</span> <span class="nav-text">理想气体物态方程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微观模型及统计规律"><span class="nav-number">2.2.</span> <span class="nav-text">微观模型及统计规律</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理想气体分子模型"><span class="nav-number">2.2.1.</span> <span class="nav-text">理想气体分子模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对分子集体的统计假设"><span class="nav-number">2.2.2.</span> <span class="nav-text">对分子集体的统计假设</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#统计规律性"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">统计规律性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#概率的定义"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">概率的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计规律有几个特点"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">统计规律有几个特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计平均值"><span class="nav-number">2.2.3.</span> <span class="nav-text">统计平均值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理想气体压强公式和温度公式"><span class="nav-number">2.3.</span> <span class="nav-text">理想气体压强公式和温度公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理想气体的统一假设"><span class="nav-number">2.3.1.</span> <span class="nav-text">理想气体的统一假设</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压强的本质"><span class="nav-number">2.3.2.</span> <span class="nav-text">压强的本质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理想气体压强公式"><span class="nav-number">2.3.3.</span> <span class="nav-text">理想气体压强公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理想气体温度公式"><span class="nav-number">2.3.4.</span> <span class="nav-text">理想气体温度公式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">叶某人</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/22/%E7%83%AD%E5%AD%A6/';
+          this.page.identifier = '2020/04/22/热学/';
+          this.page.title = '热学';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WYtTOpdKYeF648bzDlEDhtDR-gzGzoHsz',
+        appKey: 'sOdVcgdJvtgw4WfKIeC4YIPY',
+        placeholder: '',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
